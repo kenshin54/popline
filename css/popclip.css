@@ -1,0 +1,61 @@
+.popline {
+  position: absolute;
+  height: 25px;
+  line-height: 25px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+  background: -moz-linear-gradient(top, #858585 0%, #3e3e3e 50%, #303030 51%, #303030 100%);
+  background: -webkit-linear-gradient(top, #858585 0%, #3e3e3e 50%, #303030 51%, #303030 100%);
+  background: -o-linear-gradient(top, #858585 0%, #3e3e3e 50%, #303030 51%, #303030 100%);
+  background: -ms-linear-gradient(top, #858585 0%, #3e3e3e 50%, #303030 51%, #303030 100%);
+  background: linear-gradient(to bottom, #858585 0%, #3e3e3e 50%, #303030 51%, #303030 100%);
+  opacity: 0.95;
+  border: 1px solid #3B3B3A;
+  display: none;
+  margin: 0;
+  list-style: none;
+  padding: 0px 5px;
+  font-family: Arial, Helvetica, "Hiragino Sans GB", sans-serif;
+  text-rendering: optimizeLegibility; }
+  .popline li {
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    float: left;
+    cursor: pointer;
+    padding: 0 8px;
+    text-align: center; }
+    @media screen and (-webkit-min-device-pixel-ratio: 0) {
+      .popline li i {
+        font-weight: bold; } }
+    .popline li .text {
+      font-size: 15.4px; }
+  .popline .hover {
+    background: -moz-linear-gradient(top, #7096f8 0%, #3a6ff3 50%, #2b64f3 51%, #2b64f3 100%);
+    background: -webkit-linear-gradient(top, #7096f8 0%, #3a6ff3 50%, #2b64f3 51%, #2b64f3 100%);
+    background: -o-linear-gradient(top, #7096f8 0%, #3a6ff3 50%, #2b64f3 51%, #2b64f3 100%);
+    background: -ms-linear-gradient(top, #7096f8 0%, #3a6ff3 50%, #2b64f3 51%, #2b64f3 100%);
+    background: linear-gradient(to bottom, #7096f8 0%, #3a6ff3 50%, #2b64f3 51%, #2b64f3 100%); }
+  .popline .boxed {
+    padding: 0; }
+  .popline .lighter {
+    font-weight: lighter; }
+  .popline .subbar {
+    display: none;
+    list-style: none;
+    padding: 0; }
+  .popline .textfield {
+    border: none;
+    padding: 4px;
+    margin-left: 10px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    border-radius: 5px;
+    display: none;
+    outline: none;
+    width: 150px; }
