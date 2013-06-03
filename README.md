@@ -1,7 +1,7 @@
 popline
 ============
 
-popline is a HTML5 Rich-Text-Editor toolbar. Popline is inspired from popclip. Compared to traditional RTE, popline will around they mouse when you select text.
+Popline is a HTML5 Rich-Text-Editor toolbar. Popline is inspired from popclip. Compared to traditional RTE, popline will around they mouse when you select text.
 
 ## Usage
 
