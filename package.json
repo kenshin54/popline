@@ -1,0 +1,9 @@
+{
+  "name": "popline",
+  "version": "0.0.1",
+  "author": "kenshin54",
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-uglify": "0.2.2"
+  }
+}
