@@ -2,7 +2,6 @@
   jquery.popline.js 0.0.1
 
   Version: 0.0.1
-  Updated: May 18th, 2013
 
   jquery.popline.js is an open source project, contribute at GitHub:
   https://github.com/kenshin54/popline.js
