@@ -37,6 +37,10 @@
 
   $.fn.popline = function(options) {
 
+    if ($.popline.utils.browser.ie) {
+      return;
+    }
+
     this.each(function() {
       var popline = new $.popline(options, this);
     });
