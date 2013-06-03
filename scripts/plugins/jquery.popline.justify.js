@@ -1,3 +1,11 @@
+/*
+  jquery.popline.justify.js 0.0.1
+
+  Version: 0.0.1
+  Updated: May 18th, 2013
+
+  (c) 2013 by kenshin54
+*/
 ;(function($) {
   $.popline.addButton({
     justify: {
