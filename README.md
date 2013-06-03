@@ -9,18 +9,16 @@ Load jQuery and popline:
 
 ```html
 <script type="text/javascript" src="../scripts/jquery.min.js"></script>
-<script type="text/javascript" src="../scripts/jquery.popline.js"></script>
+<script type="text/javascript" src="../scripts/jquery.popline.min.js"></script>
 ```
 
-Load the popline component which you want:
+Or Load the popline plugins which you want:
 
 ```html
+<script type="text/javascript" src="../scripts/jquery.popline.js"></script>
 <script type="text/javascript" src="../scripts/plugins/jquery.popline.link.js"></script>
 <script type="text/javascript" src="../scripts/plugins/jquery.popline.decoration.js"></script>
-<script type="text/javascript" src="../scripts/plugins/jquery.popline.list.js"></script>
-<script type="text/javascript" src="../scripts/plugins/jquery.popline.justify.js"></script>
-<script type="text/javascript" src="../scripts/plugins/jquery.popline.blockformat.js"></script>
-<script type="text/javascript" src="../scripts/plugins/jquery.popline.social.js"></script>
+...
 ```
 
 Load font-awesome and popline theme:
