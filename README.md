@@ -24,7 +24,7 @@ Or Load the popline plugins which you want:
 Load font-awesome and popline theme:
 ```html
 <link rel="stylesheet" type="text/css" href="../font-awesome/css/font-awesome.min.css" />
-<link rel="stylesheet" type="text/css" href="../css/default.css" />
+<link rel="stylesheet" type="text/css" href="../themes/default.css" />
 ```
 
 Add a editable div to page:
