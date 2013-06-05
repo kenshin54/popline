@@ -34,6 +34,57 @@
     }
   };
 
+  var targetEvent = {
+    mousedown: function(event) {
+      $.popline.current = $(this).data("popline");
+      $.popline.hideAllBar();
+    },
+    keyup: function(event) {
+      var popline = $(this).data("popline"), bar = popline.bar;
+      if (window.getSelection().toString().length > 0) {
+        var left = null, top = null;
+        var rect = $.popline.getRect(), keyMoved = isKeyMove(popline.target);
+        if (keyMoved === DOWN || keyMoved === RIGHT) {
+          left = rect.right - bar.width() / 2;
+          top = $(document).scrollTop() + rect.bottom - bar.outerHeight() - parseInt($(this).css("font-size"));
+        }else if (keyMoved === UP || keyMoved === LEFT) {
+          left = rect.left - bar.width() / 2;
+          top = $(document).scrollTop() + rect.top - bar.outerHeight();
+        }
+        $.popline.current.show({left: left, top: top});
+      }else {
+        $.popline.current.hide();
+      }
+    },
+    keydown: function(event) {
+      var rects = window.getSelection().getRangeAt(0).getClientRects();
+      if (rects.length > 0) {
+        $(this).data('lastKeyPos', $.popline.boundingRect());
+      }
+    }
+  }
+
+  var isKeyMove = function(target) {
+    var lastKeyPos = target.data('lastKeyPos');
+    currentRect = $.popline.boundingRect();
+    if ($.popline.utils.isNull(lastKeyPos)) {
+      return null;
+    }
+    if (currentRect.top === lastKeyPos.top && currentRect.bottom !== lastKeyPos.bottom) {
+      return DOWN;
+    }
+    if (currentRect.bottom === lastKeyPos.bottom && currentRect.top !== lastKeyPos.top) {
+      return UP;
+    }
+    if (currentRect.right !== lastKeyPos.right) {
+      return RIGHT;
+    }
+    if (currentRect.left !== lastKeyPos.left) {
+      return LEFT;
+    }
+    return NONE;
+  };
+
   $.fn.popline = function(options) {
 
     if ($.popline.utils.browser.ie) {
@@ -41,7 +92,11 @@
     }
 
     this.each(function() {
-      var popline = new $.popline(options, this);
+      if (typeof(options) === "string" && $(this).data("popline")) {
+        $(this).data("popline")[options]();
+      }else if (!$(this).data("popline")) {
+        var popline = new $.popline(options, this);
+      }
     });
 
     if (!$(document).data("popline-global-binded")) {
@@ -145,62 +200,7 @@
 
         makeButtons.call(this, this.bar, $.popline.buttons);
 
-        var mousedown = function(event) {
-          $.popline.current = $(this).data("popline");
-          $.popline.hideAllBar();
-        };
-
-        var keyup = function(event) {
-          var popline = $(this).data("popline"), bar = popline.bar;
-          if (window.getSelection().toString().length > 0) {
-            var left = null, top = null;
-            var rect = $.popline.getRect(), keyMoved = isKeyMove(popline.target);
-            if (keyMoved === DOWN || keyMoved === RIGHT) {
-              left = rect.right - bar.width() / 2;
-              top = $(document).scrollTop() + rect.bottom - bar.outerHeight() - parseInt($(this).css("font-size"));
-            }else if (keyMoved === UP || keyMoved === LEFT) {
-              left = rect.left - bar.width() / 2;
-              top = $(document).scrollTop() + rect.top - bar.outerHeight();
-            }
-            $.popline.current.show({left: left, top: top});
-          }else {
-            $.popline.current.hide();
-          }
-        };
-
-        var keydown = function(event) {
-          var rects = window.getSelection().getRangeAt(0).getClientRects();
-          if (rects.length > 0) {
-            $(this).data('lastKeyPos', $.popline.boundingRect());
-          }
-        };
-
-        var isKeyMove = function(target) {
-          var lastKeyPos = target.data('lastKeyPos');
-          currentRect = $.popline.boundingRect();
-          if ($.popline.utils.isNull(lastKeyPos)) {
-            return null;
-          }
-          if (currentRect.top === lastKeyPos.top && currentRect.bottom !== lastKeyPos.bottom) {
-            return DOWN;
-          }
-          if (currentRect.bottom === lastKeyPos.bottom && currentRect.top !== lastKeyPos.top) {
-            return UP;
-          }
-          if (currentRect.right !== lastKeyPos.right) {
-            return RIGHT;
-          }
-          if (currentRect.left !== lastKeyPos.left) {
-            return LEFT;
-          }
-          return NONE;
-        };
-
-        this.target.bind({
-          mousedown: mousedown,
-          keyup: keyup,
-          keydown: keydown
-        });
+        this.target.bind(targetEvent);
 
         this.bar.on("mouseenter", "li", function() {
           if (!($(this).hasClass("boxed"))) {
@@ -238,6 +238,13 @@
             }
           });
         }
+      },
+
+      destroy: function() {
+        this.target.unbind(targetEvent);
+        this.target.removeData("popline");
+        this.target.removeData("lastKeyPos");
+        this.bar.remove();
       },
 
       switchBar: function(button, hideFunc, showFunc) {
