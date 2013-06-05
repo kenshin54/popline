@@ -1,0 +1,35 @@
+body {
+  padding: 0;
+  margin: 0;
+  background-color: #F8F6F5;
+}
+
+a { color: #2E8CFA; }
+a:link { color: #2E8CFA; }
+a:visited { color: #2E8CFA; }
+a:hover { color: #2E8CFA; }
+a:active { color: #2E8CFA; }
+
+.mode {
+  width: 120px;
+  position: fixed;
+  top: 20px;
+  left: 10px;
+  font-family: sans-serif;
+  font-size: 16px;
+}
+
+.container {
+  width: 840px;
+  margin: 80px auto;
+}
+
+.editor {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 22px;
+  font-weight: normal;
+  width: 100%;
+  height: 760px;
+  line-height: 30px;
+  outline: none;
+}
