@@ -38,15 +38,16 @@ $font-size: 24px;
   padding: 0px 5px;
   font-family: Arial, Helvetica, "Hiragino Sans GB", sans-serif;
   text-rendering: optimizeLegibility;
+  white-space: nowrap;
   li {
     color: white;
     font-size: $font-size;
     font-weight: bold;
-    float: left;
     cursor: pointer;
     padding: 0 18px;
     min-width: 24px;
     text-align: center;
+    display: inline-block;
     @media screen and (-webkit-min-device-pixel-ratio:0) {
       i { font-weight: bold; }
     }

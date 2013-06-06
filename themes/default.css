@@ -21,16 +21,17 @@
   list-style: none;
   padding: 0px 5px;
   font-family: Arial, Helvetica, "Hiragino Sans GB", sans-serif;
-  text-rendering: optimizeLegibility; }
+  text-rendering: optimizeLegibility;
+  white-space: nowrap; }
   .popline li {
     color: white;
     font-size: 24px;
     font-weight: bold;
-    float: left;
     cursor: pointer;
     padding: 0 18px;
     min-width: 24px;
-    text-align: center; }
+    text-align: center;
+    display: inline-block; }
     @media screen and (-webkit-min-device-pixel-ratio: 0) {
       .popline li i {
         font-weight: bold; } }
