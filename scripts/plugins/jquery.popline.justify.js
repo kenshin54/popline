@@ -55,8 +55,8 @@
 
         indent: {
           iconClass: "icon-indent-right",
-          action: function(event) {
-            if (rightIndentPixels() + blockQuoteMargin < parseInt($(".editor").css("width"))) {
+          action: function(event, popline) {
+            if (rightIndentPixels() + blockQuoteMargin < parseInt(popline.target.css("width"))) {
               document.execCommand("indent");
             }
           }
