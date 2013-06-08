@@ -7,6 +7,26 @@
   (c) 2013 by kenshin54
 */
 ;(function($) {
+
+  // Left margin of a blockquote element.
+  var el = $("<blockquote></blockquote>");
+  var blockQuoteMargin = parseInt(el.hide().appendTo("body").css("marginLeft"));
+  el.remove();
+
+  // Returns the number of indented pixels caused by indent command (number of
+  // blockquotes * number of indents).
+  var rightIndentPixels = function() {
+    var node = window.getSelection().baseNode;
+    var indents = 0;
+
+    while (node.parentNode.nodeName !== "DIV") {
+      if (node.parentNode.nodeName === "BLOCKQUOTE") indents++;
+      node = node.parentNode;
+    }
+
+    return blockQuoteMargin * indents;
+  }
+
   $.popline.addButton({
     justify: {
       iconClass: "icon-align-justify",
@@ -36,7 +56,9 @@
         indent: {
           iconClass: "icon-indent-right",
           action: function(event) {
-            document.execCommand("indent");
+            if (rightIndentPixels() + blockQuoteMargin < parseInt($(".editor").css("width"))) {
+              document.execCommand("indent");
+            }
           }
         },
 
