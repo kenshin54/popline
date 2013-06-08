@@ -8,7 +8,7 @@
 */
 ;(function($) {
 
-  var tags = ["p", "h1", "h2", "h3", "h4", "h5", "h6"];
+  var tags = ["blockquote", "p", "h1", "h2", "h3", "h4", "h5", "h6"];
 
   var wrap = function(tag) {
     var range = window.getSelection().getRangeAt(0);
@@ -61,6 +61,12 @@
       text: "H",
       mode: "edit",
       buttons: {
+        blockquote: {
+          iconClass: "icon-quote-left",
+          action: function(event) {
+            wrap("BLOCKQUOTE");
+          }
+        },
         normal: {
           text: "P",
           textClass: "lighter",

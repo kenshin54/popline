@@ -10,6 +10,13 @@ a:visited { color: #2E8CFA; }
 a:hover { color: #2E8CFA; }
 a:active { color: #2E8CFA; }
 
+blockquote {
+  border-left: 4px solid #2E8CFA;
+  margin-left: 0px;
+  padding-left: 15px;
+  margin-right: 0px;
+}
+
 .mode {
   width: 120px;
   position: fixed;
