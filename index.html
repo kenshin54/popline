@@ -8,23 +8,6 @@
   <link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.min.css" />
   <link rel="stylesheet" type="text/css" href="themes/default.css" />
   <link rel="stylesheet" type="text/css" href="css/page.css" />
-  <script type="text/javascript" src="scripts/jquery.min.js"></script>
-  <script type="text/javascript" src="build/jquery.popline.min.js"></script>
-  <script type="text/javascript">
-    $(function(){
-      document.execCommand('defaultParagraphSeparator', false, 'p');
-      $(".editor").popline();
-      $("body").data("mode", "edit");
-      $("input[name='mode']").click(function(){
-        if (this.id !== $("body").data("mode")) {
-          $(".editor").popline("destroy");
-          $(".editor").attr("contenteditable", this.id === "edit");
-          $(".editor").popline({mode: this.id});
-          $("body").data("mode", this.id);
-        }
-      });
-    });
-  </script>
 </head>
 <body> 
   <div class="mode switch candy blue">
@@ -61,6 +44,24 @@
 
     ga('create', 'UA-41540602-1', 'kenshin54.github.io');
     ga('send', 'pageview');
+  </script>
+
+  <script type="text/javascript" src="scripts/jquery.min.js"></script>
+  <script type="text/javascript" src="build/jquery.popline.min.js"></script>
+  <script type="text/javascript">
+    $(function(){
+      document.execCommand('defaultParagraphSeparator', false, 'p');
+      $(".editor").popline();
+      $("body").data("mode", "edit");
+      $("input[name='mode']").click(function(){
+        if (this.id !== $("body").data("mode")) {
+          $(".editor").popline("destroy");
+          $(".editor").attr("contenteditable", this.id === "edit");
+          $(".editor").popline({mode: this.id});
+          $("body").data("mode", this.id);
+        }
+      });
+    });
   </script>
 </body>
 </html>
