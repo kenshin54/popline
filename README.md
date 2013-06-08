@@ -60,6 +60,10 @@ Todo
 
 <http://kenshin54.github.io/popline/>
 
+## Compatibility
+
+Tested on Chrome 27.0, Safari 6.0.4, Firefox 21.0
+
 ## Contributing
 
 1. Fork it
