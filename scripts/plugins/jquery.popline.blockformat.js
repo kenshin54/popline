@@ -8,52 +8,29 @@
 */
 ;(function($) {
 
-  var tags = ["blockquote", "p", "h1", "h2", "h3", "h4", "h5", "h6"];
+  var tags = ["P", "H1", "H2", "H3", "H4", "H5", "H6", "VOID"];
 
   var wrap = function(tag) {
     var range = window.getSelection().getRangeAt(0);
     var anchorNode = window.getSelection().anchorNode, focusNode = window.getSelection().focusNode;
-    var parentTag = focusNode.parentNode.tagName;
-    var currentTag = null;
-
-    if (focusNode.nodeType !== 3) {
-      currentTag = focusNode.tagName;
-    }else {
-      currentTag = "";
-    }
-
-    var currentTagMatched = existsInTags(currentTag) && currentTag === tag;
-    var parentTagMatched = existsInTags(parentTag) && parentTag === tag;
-    // void tag is a trick because I don't know how to select a plain textNode
-    tag = (anchorNode === focusNode && ( currentTagMatched || parentTagMatched )) ? "void" : tag;
+    var matchedNode = $.popline.utils.findNodeWithTags(focusNode, tags);
+    tag = matchedNode && matchedNode.tagName === tag ? "VOID" : tag;
     var node = document.createElement(tag);
     var fragment = range.extractContents();
-    if (anchorNode !== focusNode) {
-      removeEmptyTag(focusNode.parentNode);
-    }
-    if (currentTagMatched) {
-      removeEmptyTag(anchorNode);
-    }else {
-      removeEmptyTag(anchorNode.parentNode);
-    }
+
+    removeEmptyTag(matchedNode);
+
     var textNode = document.createTextNode($(fragment).text());
     node.appendChild(textNode);
+
     range.insertNode(node);
     window.getSelection().selectAllChildren(node);
   }
 
-  var existsInTags = function(tagName) {
-    return tags.indexOf(tagName.toLowerCase()) === -1 ? false : true;
-  }
-
   var removeEmptyTag = function(node) {
-    if ((existsInTags(node.tagName) || isVoidTag(node.tagName)) && $.popline.utils.trim($(node).text()) === "") {
+    if ($.popline.utils.trim($(node).text()) === "") {
       $(node).remove();
     }
-  }
-
-  var isVoidTag = function(tagName) {
-    return tagName.toLowerCase() === "void";
   }
 
   $.popline.addButton({
@@ -61,12 +38,6 @@
       text: "H",
       mode: "edit",
       buttons: {
-        blockquote: {
-          iconClass: "icon-quote-left",
-          action: function(event) {
-            wrap("BLOCKQUOTE");
-          }
-        },
         normal: {
           text: "P",
           textClass: "lighter",

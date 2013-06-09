@@ -10,25 +10,13 @@
 
   var selectionIsLink = function() {
     var result = false;
+    var selection = window.getSelection();
     if ($.popline.utils.browser.webkit) {
-      result = ancestryLookup();
+      result = $.popline.utils.findNodeWithTags(selection.focusNode, 'A');
     }else if ($.popline.utils.browser.firefox) {
       result = firefoxSelectionIsLink();
     }
     return result;
-  }
-
-  var ancestryLookup = function() {
-    var selection = window.getSelection();
-    var pNode = null;
-    pNode = selection.focusNode.parentNode;
-    while (pNode) {
-      if (pNode.tagName === "A") {
-        return true;
-      }
-      pNode = pNode.parentNode;
-    }
-    return false;
   }
 
   var firefoxSelectionIsLink = function() {
@@ -41,7 +29,7 @@
       return true;
     }
     //if not found, lookup from ancestries
-    return ancestryLookup();
+    return $.popline.utils.findNodeWithTags(selection.focusNode, 'A');
   }
 
   var buildTextField = function(popline, button) {
