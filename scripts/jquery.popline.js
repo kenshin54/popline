@@ -154,11 +154,11 @@
               $button.children(".btn").append("<span class='text " + (button.textClass || '') + "'>" + button.text + "</span>");
             }
 
-            if ($.popline.utils.isFunction(button.beforeShow)) {
+            if ($.isFunction(button.beforeShow)) {
               this.beforeShowCallbacks.push({name: name, callback: button.beforeShow});
             }
 
-            if ($.popline.utils.isFunction(button.afterHide)) {
+            if ($.isFunction(button.afterHide)) {
               this.afterHideCallbacks.push({name: name, callback: button.afterHide});
             }
 
@@ -179,7 +179,7 @@
                   event.stopPropagation();
                 }
               });
-            }else if($.popline.utils.isFunction(button.action)) {
+            }else if($.isFunction(button.action)) {
               $button.click((function(button) {
                   return function(event) {
                     button.action.call(this, event, me);
@@ -323,9 +323,6 @@
           return true;
         }
         return false;
-      },
-      isFunction: function(func) {
-        return typeof(func) === "function";
       },
       randomNumber: function() {
         return Math.floor((Math.random() * 10000000) + 1);
