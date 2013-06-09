@@ -9,9 +9,12 @@
 ;(function($) {
 
   // Left margin of a blockquote element.
-  var el = $("<blockquote></blockquote>");
-  var blockQuoteMargin = parseInt(el.hide().appendTo("body").css("marginLeft"));
-  el.remove();
+  var blockQuoteMargin = undefined;
+  $(document).ready(function() {
+    var el = $("<blockquote></blockquote>");
+    blockQuoteMargin = parseInt(el.hide().appendTo("body").css("marginLeft"));
+    el.remove();
+  });
 
   // Returns the number of indented pixels caused by indent command (number of
   // blockquotes * number of indents).
