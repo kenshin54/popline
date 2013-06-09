@@ -340,6 +340,21 @@
         opera: navigator.userAgent.match(/opera/i) ? true : false,
         ie: navigator.userAgent.match(/msie/i) ? true : false,
         webkit: navigator.userAgent.match(/webkit/i) ? true : false
+      },
+      findNodeWithTags: function(node, tags) {
+        if (!$.isArray(tags)) {
+          tags = [tags];
+        }
+        while (node) {
+          if (node.nodeType !== 3) {
+            var index = tags.indexOf(node.tagName);
+            if (index !== -1) {
+              return node;
+            }
+          }
+          node = node.parentNode;
+        }
+        return null;
       }
     },
 
