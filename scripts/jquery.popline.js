@@ -121,7 +121,9 @@
 
     defaults: {
       zIndex: 9999,
-      mode: "edit"
+      mode: "edit",
+      enable: null,
+      disable: null
     },
 
     instances: [],
@@ -135,11 +137,51 @@
         this.target.data("popline", this);
         var me = this;
 
+        var isEnable = function(array, name) {
+          if (array === null) {
+            return true;
+          }
+          for (var i = 0, l = array.length; i < l; i++) {
+            var v = array[i];
+            if (typeof(v) === "string" && name === v) {
+              return true;
+            }else if ($.isArray(v)) {
+              if (isEnable(v, name)) {
+                return true;
+              }
+            }
+          }
+          return false;
+        }
+
+
+        var isDisable = function(array, name) {
+          if (array === null) {
+            return false;
+          }
+          for (var i = 0, l = array.length; i < l; i++) {
+            var v = array[i];
+            if (typeof(v) === "string" && name === v) {
+              return true;
+            }else if ($.isArray(v)) {
+              if ((v.length === 1 || !$.isArray(v[1])) && isDisable(v, name)) {
+                return true;
+              }else if (isDisable(v.slice(1), name)) {
+                return true;
+              }
+            }
+          }
+          return false;
+        }
+
         var makeButtons = function(parent, buttons) {
           for (var name in buttons) {
             var button = buttons[name];
             var mode = $.popline.utils.isNull(button.mode) ? $.popline.defaults.mode : button.mode;
-            if (mode !== me.settings.mode) {
+
+            if (mode !== me.settings.mode
+                || !isEnable(this.settings.enable, name)
+                || isDisable(this.settings.disable, name)) {
               continue;
             }
             var $button = $("<li><span class='btn'></span></li>");
