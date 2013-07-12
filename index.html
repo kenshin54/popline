@@ -27,6 +27,14 @@
   </script>
 </head>
 <body> 
+  <div id="fb-root"></div>
+  <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=138812102872297";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));</script>
   <div class="mode switch candy blue">
     <input id="edit" name="mode" type="radio" checked="">
     <label for="edit">Edit</label>
@@ -37,6 +45,10 @@
     <span class="slide-button"></span>
   </div>
   <section class="container">
+    <div class="g-plusone" data-size="medium" data-href="http://kenshin54.github.io/popline/"></div>
+    <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://kenshin54.github.io/popline/" data-via="kenshin54">Tweet</a>
+    <div class="fb-like" data-href="http://kenshin54.github.io/popline/" data-send="false" data-layout="button_count" data-width="450" data-show-faces="true"></div>
+
     <article class="content">
       <div class="editor" contenteditable="true">
         <p><a href="https://github.com/kenshin54/popline">Popline</a> is an HTML5 Rich-Text-Editor Toolbar.</p>
@@ -52,6 +64,14 @@
       </div>
     </article>
   </section>
+  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  <script type="text/javascript">
+    (function() {
+      var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+      po.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+    })();
+  </script>
   <a href="https://github.com/kenshin54/popline"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
   <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
