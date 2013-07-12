@@ -48,6 +48,16 @@ Popline also support `View Mode`, you can send a twitter, a facebook message, pi
 $(".editor").popline({mode: 'view'});
 ```
 
+## Enable / Disable / Reorder plugins
+
+You can enable/disable/reorder plugins when popline initialize.
+
+
+```js
+$(".editor").popline({enable: ["link", ["justify", ["justifyCenter", "indent"]] , "orderedList", "unOrderedList"]});
+$(".editor").popline({disable: ["link", "blockquote"]});
+```
+
 ## Extension
 
 Todo
