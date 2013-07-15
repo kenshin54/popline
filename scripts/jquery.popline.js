@@ -26,6 +26,7 @@
         var left = null, top = null;
         var rect = window.getSelection().getRangeAt(0).getBoundingClientRect();
         left = event.pageX - bar.width() / 2;
+        if (left < 0) left = 10;
         top = event.pageY - bar.outerHeight() - parseInt(target.css('font-size')) / 2;
         $.popline.current.show({left: left, top: top});
       }
