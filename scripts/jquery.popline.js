@@ -13,6 +13,14 @@
 
   var LEFT = -2, UP = -1, RIGHT = 2, DOWN = 1, NONE = 0, ENTER = 13;
 
+  var isIMEMode = false;
+  $(document).on('compositionstart', function(event) {
+    isIMEMode = true;
+  });
+  $(document).on('compositionend', function(event) {
+    isIMEMode = false;
+  });
+
   var toggleBox = function(event) {
     if ($.popline.utils.isNull($.popline.current)) {
       return;
@@ -42,7 +50,7 @@
     },
     keyup: function(event) {
       var popline = $(this).data("popline"), bar = popline.bar;
-      if (window.getSelection().toString().length > 0) {
+      if (!isIMEMode && window.getSelection().toString().length > 0) {
         var left = null, top = null;
         var rect = $.popline.getRect(), keyMoved = isKeyMove(popline.target);
         if (keyMoved === DOWN || keyMoved === RIGHT) {
