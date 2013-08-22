@@ -64,7 +64,16 @@ Todo
 
 ## Theme customize
 
-Todo
+#### default
+
+![default](https://raw.github.com/kenshin54/popline/master/img/default.png "default")
+
+#### popclip
+
+![popclip](https://raw.github.com/kenshin54/popline/master/img/popclip.png "popclip")
+
+
+Hack the theme css and create yours.
 
 ## Example
 
