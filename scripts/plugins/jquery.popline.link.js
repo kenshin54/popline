@@ -36,7 +36,7 @@
     if (button.find(":text").length === 0) {
       var $textField = $("<input type='text' />");
       $textField.addClass("textfield");
-      $textField.attr("placeholder", "Type Url Here");
+      $textField.attr("placeholder", "http://");
 
       $textField.keyup(function(event) {
         if (event.which === 13) {
