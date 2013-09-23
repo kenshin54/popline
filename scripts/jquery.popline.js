@@ -27,7 +27,7 @@
     }
     var isTargetOrChild = $.contains($.popline.current.target.get(0), event.target) || $.popline.current.target.get(0) === event.target;
     var isBarOrChild = $.contains($.popline.current.bar.get(0), event.target) || $.popline.current.bar.get(0) === event.target;
-    if ((isTargetOrChild || isBarOrChild) && window.getSelection().toString().length > 0) {
+    if ((isTargetOrChild || isBarOrChild) && window.getSelection().toString().length > 0 && !$.popline.current.keepSlientWhenBlankSelected()) {
       var target= $.popline.current.target, bar = $.popline.current.bar;
       if (bar.is(":hidden") || bar.is(":animated")) {
         bar.stop(true, true);
@@ -50,7 +50,7 @@
     },
     keyup: function(event) {
       var popline = $(this).data("popline"), bar = popline.bar;
-      if (!isIMEMode && window.getSelection().toString().length > 0) {
+      if (!isIMEMode && window.getSelection().toString().length > 0 && !popline.keepSlientWhenBlankSelected()) {
         var left = null, top = null;
         var rect = $.popline.getRect(), keyMoved = isKeyMove(popline.target);
         if (keyMoved === DOWN || keyMoved === RIGHT) {
@@ -132,7 +132,8 @@
       zIndex: 9999,
       mode: "edit",
       enable: null,
-      disable: null
+      disable: null,
+      keepSlientWhenBlankSelected: true
     },
 
     instances: [],
@@ -313,6 +314,14 @@
               _this.bar.animate({ opacity: 1, marginTop: 0 })
             }
           });
+        }
+      },
+
+      keepSlientWhenBlankSelected: function() {
+        if (this.settings.keepSlientWhenBlankSelected && $.trim(window.getSelection().toString()) === ""){
+          return true;
+        }else {
+          return false;
         }
       },
 
