@@ -48,6 +48,17 @@ Popline also support `View Mode`, you can send a twitter, a facebook message, pi
 $(".editor").popline({mode: 'view'});
 ```
 
+## Popup Position
+
+Popline can popup at top of the paragraph which you selected (like Medium) or popup on the mouse pointer position.
+
+```js
+$(".editor").popline({position: 'fixed'});
+$(".editor").popline({position: 'relative'});
+```
+
+The default option is 'fixed'.
+
 ## Enable / Disable / Reorder plugins
 
 You can enable/disable/reorder plugins when popline initialize.
