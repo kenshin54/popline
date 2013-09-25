@@ -17,13 +17,17 @@ blockquote {
   margin-right: 0px;
 }
 
-.mode {
-  width: 120px;
+.switcher {
+  width: 150px;
   position: fixed;
   top: 20px;
   left: 10px;
   font-family: sans-serif;
   font-size: 16px;
+}
+
+.switcher .switch-toggle {
+  margin-bottom: 10px;
 }
 
 .container {
