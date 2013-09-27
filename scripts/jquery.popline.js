@@ -82,7 +82,8 @@
           }else if (keyMoved === UP || keyMoved === LEFT) {
             left = rect.left - bar.width() / 2;
           }
-          top = rect.top - bar.outerHeight() - 10;
+          var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+          top = scrollTop + rect.top - bar.outerHeight() - 10;
           return {left: left, top: top};
         }
       },
@@ -229,8 +230,8 @@
               $button.children(".btn").append("<span class='text " + (button.textClass || '') + "'>" + button.text + "</span>");
             }
 
-            if (button.bg_color) {
-              $button.css({'background-color': button.bg_color});
+            if (button.bgColor) {
+              $button.css({'background-color': button.bgColor});
             }
 
             if ($.isFunction(button.beforeShow)) {

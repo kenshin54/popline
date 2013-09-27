@@ -24,7 +24,7 @@
 
       $(colors).each(function (index, color) {
         buttons['color' + index] = {
-            bg_color: color,
+            bgColor: color,
             text: '&nbsp',
             action: function (event) {
                 document.execCommand('ForeColor', "false", $(this).css('background-color'));
