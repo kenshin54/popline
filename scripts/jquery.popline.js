@@ -62,7 +62,6 @@
   }
 
   var Position = function() {
-
     var target= $.popline.current.target, bar = $.popline.current.bar, positionType = $.popline.current.settings.position;
 
     var positions = {
@@ -70,8 +69,9 @@
         mouseup: function(event) {
           var rect = window.getSelection().getRangeAt(0).getBoundingClientRect();
           var left = event.pageX - bar.width() / 2;
+          var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
           if (left < 0) left = 10;
-          var top = rect.top - bar.outerHeight() - 10;
+          var top = scrollTop + rect.top - bar.outerHeight() - 10;
           return {left: left, top: top};
         },
         keyup: function(event) {
@@ -227,6 +227,10 @@
 
             if (button.text) {
               $button.children(".btn").append("<span class='text " + (button.textClass || '') + "'>" + button.text + "</span>");
+            }
+
+            if (button.bg_color) {
+              $button.css({'background-color': button.bg_color});
             }
 
             if ($.isFunction(button.beforeShow)) {

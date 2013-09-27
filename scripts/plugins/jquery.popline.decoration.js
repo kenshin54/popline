@@ -40,5 +40,6 @@
         document.execCommand("underline");
       }
     }
+
   });
 })(jQuery);
