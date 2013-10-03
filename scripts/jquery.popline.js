@@ -54,6 +54,7 @@
       }
     },
     keydown: function(event) {
+      $.popline.current = $(this).data("popline");
       var rects = window.getSelection().getRangeAt(0).getClientRects();
       if (rects.length > 0) {
         $(this).data('lastKeyPos', $.popline.boundingRect());
