@@ -1,7 +1,7 @@
 popline
 ============
 
-Popline is a HTML5 Rich-Text-Editor toolbar. Popline is inspired from popclip. Compared to traditional RTE, popline will float around the selected text.
+Popline is a non-intrusive WYSIWYG editor that shows up only after selecting a piece of text on the page, inspired by popclip.
 
 ## Usage
 
