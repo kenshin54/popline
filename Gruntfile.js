@@ -16,6 +16,7 @@ module.exports = function(grunt) {
       suite: {
           options: {
               specs: 'spec/*_spec.js',
+              helpers: ['scripts/jquery.min.js', 'spec/helpers/*.js'],
               styles: 'themes/default.css',
               junit: {
                   path: "reports/jasmine/",
@@ -28,7 +29,7 @@ module.exports = function(grunt) {
                   report: 'coverage'
               }
           },
-          src: 'scripts/**/*.js'
+          src: ['scripts/jquery.popline.js', 'scripts/plugins/*.js']
       }
     }
   });
