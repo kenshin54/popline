@@ -14,10 +14,9 @@ module.exports = function(grunt) {
     },
     jasmine: {
       suite: {
-          src: 'scripts/**/*.js',
           options: {
-              specs: 'spec/*.spec.js',
-              helpers: 'spec/helpers/*.js',
+              specs: 'spec/*_spec.js',
+              styles: 'themes/default.css',
               junit: {
                   path: "reports/jasmine/",
                   consolidate: true
@@ -28,7 +27,8 @@ module.exports = function(grunt) {
                   coverage: 'reports/jasmine/coverage.json',
                   report: 'coverage'
               }
-          }
+          },
+          src: 'scripts/**/*.js'
       }
     }
   });
