@@ -4,6 +4,8 @@
   "author": "kenshin54",
   "devDependencies": {
     "grunt": "~0.4.1",
-    "grunt-contrib-uglify": "0.2.2"
+    "grunt-contrib-uglify": "0.2.2",
+    "grunt-contrib-jasmine": "~0.4.2",
+    "grunt-template-jasmine-istanbul": "~0.2.4"
   }
 }
