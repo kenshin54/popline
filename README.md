@@ -106,3 +106,7 @@ License
 -------
 
 Copyright (c) 2013 kenshin54. Distributed under the MIT License. See LICENSE.txt for further details.
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/kenshin54/popline/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
