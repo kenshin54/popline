@@ -21,7 +21,7 @@
 
   $.popline.addButton({
     search: {
-      iconClass: "icon-search",
+      iconClass: "fa fa-search",
       mode: "view",
       action: function(event) {
         var url = "https://www.google.com/search?q=" + encodeURIComponent(window.getSelection().toString());
@@ -29,7 +29,7 @@
       }
     },
     twitter: {
-      iconClass: "icon-twitter",
+      iconClass: "fa fa-twitter",
       mode: "view",
       action: function(event) {
         var url = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(window.getSelection().toString()+ " - " + location.href);
@@ -37,7 +37,7 @@
       }
     },
     facebook: {
-      iconClass: "icon-facebook",
+      iconClass: "fa fa-facebook",
       mode: "view",
       action: function(event) {
         var url = "http://www.facebook.com/sharer.php";
@@ -49,7 +49,7 @@
       }
     },
     pinterest: {
-      iconClass: "icon-pinterest",
+      iconClass: "fa fa-pinterest",
       mode: "view",
       action: function(event) {
         var url = "http://pinterest.com/pin/create/button/";

@@ -10,7 +10,7 @@
 
   $.popline.addButton({
     blockquote: {
-      iconClass: "icon-quote-left",
+      iconClass: "fa fa-quote-left",
       mode: "edit",
       action: function(event, popline) {
         var selection = window.getSelection();

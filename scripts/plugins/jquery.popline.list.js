@@ -10,7 +10,7 @@
 
   $.popline.addButton({
     orderedList: {
-      iconClass: "icon-list-ol",
+      iconClass: "fa fa-list-ol",
       mode: "edit",
       action: function(event) {
         document.execCommand("InsertOrderedList");
@@ -18,7 +18,7 @@
     },
 
     unOrderedList: {
-      iconClass: "icon-list-ul",
+      iconClass: "fa fa-list-ul",
       mode: "edit",
       action: function(event) {
         document.execCommand("InsertUnorderedList");

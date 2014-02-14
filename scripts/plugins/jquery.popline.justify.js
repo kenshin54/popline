@@ -9,39 +9,39 @@
 ;(function($) {
   $.popline.addButton({
     justify: {
-      iconClass: "icon-align-justify",
+      iconClass: "fa fa-align-justify",
       mode: "edit",
       buttons: {
         justifyLeft: {
-          iconClass: "icon-align-left",
+          iconClass: "fa fa-align-left",
           action: function(event) {
             document.execCommand("JustifyLeft");
           }
         },
 
         justifyCenter: {
-          iconClass: "icon-align-center",
+          iconClass: "fa fa-align-center",
           action: function(event) {
             document.execCommand("JustifyCenter");
           }
         },
 
         justifyRight: {
-          iconClass: "icon-align-right",
+          iconClass: "fa fa-align-right",
           action: function(event) {
             document.execCommand("JustifyRight");
           }
         },
 
         indent: {
-          iconClass: "icon-indent-right",
+          iconClass: "fa fa-indent",
           action: function(event) {
             document.execCommand("indent");
           }
         },
 
         outdent: {
-          iconClass: "icon-indent-left",
+          iconClass: "fa fa-dedent",
           action: function(event) {
             document.execCommand("outdent");
           }

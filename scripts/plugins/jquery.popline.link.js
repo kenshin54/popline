@@ -57,13 +57,13 @@
 
   $.popline.addButton({
     link: {
-      iconClass: "icon-link",
+      iconClass: "fa fa-link",
       mode: "edit",
       beforeShow: function(popline) {
         if (selectionIsLink()) {
-          this.find("i").removeClass("icon-link").addClass("icon-unlink");
+          this.find("i").removeClass("fa fa-link").addClass("fa fa-unlink");
         }else {
-          this.find("i").removeClass("icon-unlink").addClass("icon-link");
+          this.find("i").removeClass("fa fa-unlink").addClass("fa fa-link");
         }
 
         if (!this.data("click-event-binded")) {
@@ -74,7 +74,7 @@
             if (selectionIsLink()) {
 
               document.execCommand("unlink");
-              $_this.find("i").removeClass("icon-unlink").addClass("icon-link");
+              $_this.find("i").removeClass("fa fa-unlink").addClass("fa fa-link");
 
             }else {
 

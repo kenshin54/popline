@@ -55,7 +55,7 @@
 
   $.popline.addButton({
     color: {
-      iconClass: "icon-font",
+      iconClass: "fa fa-font",
       mode: "edit",
       buttons: getColorButtons()
     }
