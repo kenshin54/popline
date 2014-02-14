@@ -47,6 +47,8 @@
             window.getSelection().removeAllRanges();
             window.getSelection().addRange(button.data('selection'));
             document.execCommand("createlink", false, $(this).val());
+		  } else {
+            window.getSelection().addRange(button.data('selection'));
 		  }
           popline.hide();
         }
