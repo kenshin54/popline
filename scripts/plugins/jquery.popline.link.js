@@ -8,6 +8,8 @@
 */
 ;(function($) {
 
+  var pattern = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/
+
   var selectionIsLink = function() {
     var result = false;
     var selection = window.getSelection();
@@ -41,9 +43,11 @@
       $textField.keyup(function(event) {
         if (event.which === 13) {
           $(this).blur();
-          window.getSelection().removeAllRanges();
-          window.getSelection().addRange(button.data('selection'));
-          document.execCommand("createlink", false, $(this).val());
+		  if (pattern.test($(this).val())) {
+            window.getSelection().removeAllRanges();
+            window.getSelection().addRange(button.data('selection'));
+            document.execCommand("createlink", false, $(this).val());
+		  }
           popline.hide();
         }
       });
