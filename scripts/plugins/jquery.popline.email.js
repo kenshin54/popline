@@ -1,10 +1,10 @@
 /*
-  jquery.popline.email.js 0.0.1
+  jquery.popline.email.js 0.1.0-dev
 
-  Version: 0.0.1
-  Updated: Aug 22th, 2013
+  Version: 0.1.0-dev
+  Updated: Aug 11th, 2014
 
-  (c) 2013 by kenshin54
+  (c) 2014 by kenshin54
 */
 ;(function($) {
 
@@ -12,8 +12,8 @@
 
   var selectionIsEmail = function() {
     var result = false;
-    var selection = window.getSelection();
-    if (pattern.test(selection.toString())) {
+    var text = $.popline.utils.selection().text();
+    if (pattern.test(text)) {
       result = true;
     }
     return result;
@@ -29,7 +29,7 @@
         }
       },
       action: function(event) {
-        var $emailLink = $("<a></a>").attr("id", "popline-email-link").attr("href", "mailto:" + window.getSelection().toString());
+        var $emailLink = $("<a></a>").attr("id", "popline-email-link").attr("href", "mailto:" + $.popline.utils.selection().text());
         $emailLink.click(function(event){
           event.stopPropagation();
         });

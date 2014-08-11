@@ -1,12 +1,12 @@
 /*
-  jquery.popline.js 0.0.1
+  jquery.popline.js 0.1.0-dev
 
-  Version: 0.0.1
+  Version: 0.1.0-dev
 
   jquery.popline.js is an open source project, contribute at GitHub:
   https://github.com/kenshin54/popline.js
 
-  (c) 2013 by kenshin54
+  (c) 2014 by kenshin54
 */
 
 ;(function($) {
@@ -27,7 +27,7 @@
     }
     var isTargetOrChild = $.contains($.popline.current.target.get(0), event.target) || $.popline.current.target.get(0) === event.target;
     var isBarOrChild = $.contains($.popline.current.bar.get(0), event.target) || $.popline.current.bar.get(0) === event.target;
-    if ((isTargetOrChild || isBarOrChild) && window.getSelection().toString().length > 0 && !$.popline.current.keepSlientWhenBlankSelected()) {
+    if ((isTargetOrChild || isBarOrChild) && $.popline.utils.selection().text().length > 0 && !$.popline.current.keepSlientWhenBlankSelected()) {
       var target= $.popline.current.target, bar = $.popline.current.bar;
       if (bar.is(":hidden") || bar.is(":animated")) {
         bar.stop(true, true);
@@ -46,7 +46,7 @@
     },
     keyup: function(event) {
       var popline = $(this).data("popline"), bar = popline.bar;
-      if (!isIMEMode && window.getSelection().toString().length > 0 && !popline.keepSlientWhenBlankSelected()) {
+      if (!isIMEMode && $.popline.utils.selection().text().length > 0 && !popline.keepSlientWhenBlankSelected()) {
         var pos = Position().keyup(event);
         $.popline.current.show(pos);
       }else {
@@ -55,7 +55,7 @@
     },
     keydown: function(event) {
       $.popline.current = $(this).data("popline");
-      var rects = window.getSelection().getRangeAt(0).getClientRects();
+      var rects = $.popline.utils.selection().range().getClientRects();
       if (rects.length > 0) {
         $(this).data('lastKeyPos', $.popline.boundingRect());
       }
@@ -68,7 +68,7 @@
     var positions = {
       "fixed": {
         mouseup: function(event) {
-          var rect = window.getSelection().getRangeAt(0).getBoundingClientRect();
+          var rect = $.popline.utils.selection().range().getBoundingClientRect();
           var left = event.pageX - bar.width() / 2;
           var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
           if (left < 0) left = 10;
@@ -115,7 +115,7 @@
 
   $.fn.popline = function(options) {
 
-    if ($.popline.utils.browser.ie) {
+    if ($.popline.utils.browser.ieLtIE8()) {
       return;
     }
 
@@ -224,11 +224,11 @@
             $button.addClass("popline-button popline-" + name + "-button")
 
             if (button.iconClass) {
-              $button.children(".btn").append("<i class='" + button.iconClass + "'></i>");
+               $button.children(".btn").append("<a class='" + button.iconClass + "' href='javascript:void(0);'></a>");
             }
 
             if (button.text) {
-              $button.children(".btn").append("<span class='text " + (button.textClass || '') + "'>" + button.text + "</span>");
+              $button.children(".btn").append("<a class='text' href='javascript:void(0);'>" + button.text + "</a>");
             }
 
             if (button.bgColor) {
@@ -283,18 +283,20 @@
 
         this.target.bind(targetEvent);
 
-        this.bar.on("mouseenter", "li", function() {
+        this.bar.on("mouseenter", "li", function(event) {
           if (!($(this).hasClass("boxed"))) {
             $(this).addClass("hover");
           }
+          event.stopPropagation();
         });
-        this.bar.on("mouseleave", "li", function() {
+        this.bar.on("mouseleave", "li", function(event) {
           if (!($(this).hasClass("boxed"))) {
             $(this).removeClass("hover");
           }
+          event.stopPropagation();
         });
       },
-      
+
       show: function(options) {
         for (var i = 0, l = this.beforeShowCallbacks.length; i < l; i++) {
           var obj = this.beforeShowCallbacks[i];
@@ -302,6 +304,9 @@
           obj.callback.call($button, this);
         }
         this.bar.css('top', options.top + "px").css('left', options.left + "px").stop(true, true).fadeIn();
+        if ($.popline.utils.browser.ieLtIE9()) {
+          $.popline.utils.fixIE8();
+        }
       },
 
       hide: function() {
@@ -347,7 +352,7 @@
       },
 
       keepSlientWhenBlankSelected: function() {
-        if (this.settings.keepSlientWhenBlankSelected && $.trim(window.getSelection().toString()) === ""){
+        if (this.settings.keepSlientWhenBlankSelected && $.trim($.popline.utils.selection().text()) === ""){
           return true;
         }else {
           return false;
@@ -397,7 +402,7 @@
 
     boundingRect: function(rects) {
       if ($.popline.utils.isNull(rects)) {
-        rects = window.getSelection().getRangeAt(0).getClientRects();
+        rects = $.popline.utils.selection().range().getClientRects();
       }
       return {
         top: parseInt(rects[0].top),
@@ -408,7 +413,7 @@
     },
 
     webkitBoundingRect: function() {
-      var rects = window.getSelection().getRangeAt(0).getClientRects();
+      var rects = $.popline.utils.selection().range().getClientRects();
       var wbRects = [];
       for (var i = 0, l = rects.length; i < l; i++) {
         var rect = rects[i];
@@ -424,7 +429,7 @@
     },
 
     getRect: function() {
-      if ($.popline.utils.browser.firefox || $.popline.utils.browser.opera) {
+      if ($.popline.utils.browser.firefox || $.popline.utils.browser.opera || $.popline.utils.browser.ie) {
         return $.popline.boundingRect();
       }else if ($.popline.utils.browser.chrome || $.popline.utils.browser.safari) {
         return $.popline.webkitBoundingRect();
@@ -449,8 +454,23 @@
         safari: navigator.userAgent.match(/safari/i) && !navigator.userAgent.match(/chrome/i) ? true : false,
         firefox: navigator.userAgent.match(/firefox/i) ? true : false,
         opera: navigator.userAgent.match(/opera/i) ? true : false,
-        ie: navigator.userAgent.match(/msie/i) ? true : false,
-        webkit: navigator.userAgent.match(/webkit/i) ? true : false
+        ie: navigator.userAgent.match(/msie|trident\/.*rv:/i) ? true : false,
+        webkit: navigator.userAgent.match(/webkit/i) ? true : false,
+        ieVersion: function() {
+          var rv = -1; // Return value assumes failure.
+          var ua = navigator.userAgent;
+          var re  = new RegExp("(MSIE |rv:)([0-9]{1,}[\.0-9]{0,})");
+          if (re.exec(ua) !== null) {
+            rv = parseFloat(RegExp.$2);
+          }
+          return rv;
+        },
+        ieLtIE8: function() {
+          return $.popline.utils.browser.ie && $.popline.utils.browser.ieVersion() < 8;
+        },
+        ieLtIE9: function() {
+          return $.popline.utils.browser.ie && $.popline.utils.browser.ieVersion() < 9;
+        }
       },
       findNodeWithTags: function(node, tags) {
         if (!$.isArray(tags)) {
@@ -458,7 +478,7 @@
         }
         while (node) {
           if (node.nodeType !== 3) {
-            var index = tags.indexOf(node.tagName);
+            var index = $.inArray(node.tagName, tags);
             if (index !== -1) {
               return node;
             }
@@ -466,6 +486,61 @@
           node = node.parentNode;
         }
         return null;
+      },
+      selection: function() {
+        if ($.popline.utils.browser.ieLtIE9()) {
+          return {
+            obj: function() {
+              return document.selection;
+            },
+            range: function() {
+              return document.selection.createRange();
+            },
+            text: function() {
+               return document.selection.createRange().text;
+            },
+            focusNode: function() {
+              return document.selection.createRange().parentElement();
+            },
+            select: function(range) {
+              range.select();
+            },
+            empty: function() {
+              document.selection.empty();
+            }
+          }
+        } else {
+          return {
+            obj: function() {
+              return window.getSelection();
+            },
+            range: function() {
+              return window.getSelection().getRangeAt(0);
+            },
+            text: function() {
+               return window.getSelection().toString();
+            },
+            focusNode: function() {
+              return window.getSelection().focusNode;
+            },
+            select: function(range) {
+              window.getSelection().addRange(range);
+            },
+            empty: function() {
+              window.getSelection().removeAllRanges();
+            }
+          }
+        }
+      },
+      fixIE8: function() {
+        var head = document.getElementsByTagName('head')[0],
+        style = document.createElement('style');
+        style.type = 'text/css';
+        style.styleSheet.cssText = ':before,:after{content:none !important';
+        head.appendChild(style);
+        setTimeout(function(){
+            head.removeChild(style);
+        }, 0);
       }
     },
 

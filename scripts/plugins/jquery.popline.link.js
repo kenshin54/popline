@@ -1,27 +1,27 @@
 /*
-  jquery.popline.link.js 0.0.1
+  jquery.popline.link.js 0.1.0-dev
 
-  Version: 0.0.1
-  Updated: May 18th, 2013
+  Version: 0.1.0-dev
+  Updated: Aug 11th, 2014
 
-  (c) 2013 by kenshin54
-*/
-;(function($) {
+  (c) 2014 by kenshin54
+  */
+  ;(function($) {
 
-  var pattern = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/
+    var pattern = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/
 
-  var selectionIsLink = function() {
-    var result = false;
-    var selection = window.getSelection();
-    if ($.popline.utils.browser.webkit) {
-      result = $.popline.utils.findNodeWithTags(selection.focusNode, 'A');
-    }else if ($.popline.utils.browser.firefox) {
-      result = firefoxSelectionIsLink();
+    var selectionIsLink = function() {
+      var result = false;
+      var focusNode = $.popline.utils.selection().focusNode();
+      if ($.popline.utils.browser.webkit || $.popline.utils.browser.ie) {
+        result = $.popline.utils.findNodeWithTags(focusNode, 'A');
+      }else if ($.popline.utils.browser.firefox) {
+        result = firefoxSelectionIsLink();
+      }
+      return result;
     }
-    return result;
-  }
 
-  var firefoxSelectionIsLink = function() {
+    var firefoxSelectionIsLink = function() {
     //firefox has diffrerent behavior between double click selection and mouse move selection
     //when double click to select link, we need lookup from descendants
     var selection = window.getSelection();
@@ -43,13 +43,13 @@
       $textField.keyup(function(event) {
         if (event.which === 13) {
           $(this).blur();
-		  if (pattern.test($(this).val())) {
-            window.getSelection().removeAllRanges();
-            window.getSelection().addRange(button.data('selection'));
+          if (pattern.test($(this).val())) {
+            $.popline.utils.selection().empty();
+            $.popline.utils.selection().select(button.data('selection'));
             document.execCommand("createlink", false, $(this).val());
-		  } else {
-            window.getSelection().addRange(button.data('selection'));
-		  }
+          } else {
+            $.popline.utils.selection().select(button.data('selection'));
+          }
           popline.hide();
         }
       });
@@ -66,21 +66,23 @@
       iconClass: "fa fa-link",
       mode: "edit",
       beforeShow: function(popline) {
+        var $a = this.find("a");
+        console.log($a);
         if (selectionIsLink()) {
-          this.find("i").removeClass("fa fa-link").addClass("fa fa-unlink");
+          $a.removeClass("fa fa-link").addClass("fa fa-unlink");
         }else {
-          this.find("i").removeClass("fa fa-unlink").addClass("fa fa-link");
+          $a.removeClass("fa fa-unlink").addClass("fa fa-link");
         }
 
         if (!this.data("click-event-binded")) {
-          
+
           this.click(function(event) {
             var $_this = $(this);
 
             if (selectionIsLink()) {
 
               document.execCommand("unlink");
-              $_this.find("i").removeClass("fa fa-unlink").addClass("fa fa-link");
+              $_this.find("a").removeClass("fa fa-unlink").addClass("fa fa-link");
 
             }else {
 
@@ -89,11 +91,11 @@
               if (!$_this.hasClass("boxed")) {
                 popline.switchBar($_this, function() {
                   $_this.siblings("li").hide().end()
-                    .children(":text").show().end()
+                  .children(":text").show().end()
                 }, function() {
                   $_this.children(":text").focus()
                 });
-                $_this.data('selection', window.getSelection().getRangeAt(0));
+                $_this.data('selection', $.popline.utils.selection().range());
                 event.stopPropagation();
               }
             }

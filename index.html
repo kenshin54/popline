@@ -8,6 +8,9 @@
   <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="themes/default.css" />
   <link rel="stylesheet" type="text/css" href="css/page.css" />
+  <!--[if lt IE 9]>
+    <script type="text/javascript" src="scripts/html5shiv.min.js"></script>
+  <![endif]-->
   <script type="text/javascript" src="scripts/jquery.min.js"></script>
   <script type="text/javascript" src="scripts/jquery.popline.js"></script>
   <script type="text/javascript" src="scripts/plugins/jquery.popline.link.js"></script>
@@ -20,7 +23,13 @@
   <script type="text/javascript" src="scripts/plugins/jquery.popline.backcolor.js"></script>
   <script type="text/javascript">
     $(function(){
-      document.execCommand('defaultParagraphSeparator', false, 'p');
+      if ($.popline.utils.browser.ie) {
+        if ($.popline.utils.browser.ieVersion() < 9) {
+          $.popline.utils.fixIE8();
+        }
+      } else {
+        document.execCommand('defaultParagraphSeparator', false, 'p');
+      }
       $(".editor").popline({position: "fixed"});
       $("input[name='mode']").click(function(){
         $(".editor").popline("destroy");
@@ -33,7 +42,7 @@
     });
   </script>
 </head>
-<body> 
+<body>
   <div id="fb-root"></div>
   <script>(function(d, s, id) {
     var js, fjs = d.getElementsByTagName(s)[0];
@@ -47,18 +56,18 @@
       <input id="edit" name="mode" type="radio" checked="">
       <label for="edit">Edit</label>
 
-      <input id="view" name="mode" type="radio">	
+      <input id="view" name="mode" type="radio">
       <label for="view">View</label>
-      
+
       <a></a>
     </div>
     <div class="switch-toggle candy blue">
       <input id="fixed" name="position" type="radio" checked="">
       <label for="fixed">Fixed</label>
 
-      <input id="relative" name="position" type="radio">	
+      <input id="relative" name="position" type="radio">
       <label for="relative">Relative</label>
-      
+
       <a></a>
     </div>
   </div>

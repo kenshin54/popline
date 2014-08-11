@@ -1,10 +1,10 @@
 /*
-  jquery.popline.social.js 0.0.1
+  jquery.popline.social.js 0.1.0-dev
 
-  Version: 0.0.1
-  Updated: May 18th, 2013
+  Version: 0.1.0-dev
+  Updated: Aug 11th, 2014
 
-  (c) 2013 by kenshin54
+  (c) 2014 by kenshin54
 */
 ;(function($) {
 
@@ -24,7 +24,7 @@
       iconClass: "fa fa-search",
       mode: "view",
       action: function(event) {
-        var url = "https://www.google.com/search?q=" + encodeURIComponent(window.getSelection().toString());
+        var url = "https://www.google.com/search?q=" + encodeURIComponent($.popline.utils.selection().text());
         openWindow(url, false);
       }
     },
@@ -32,7 +32,7 @@
       iconClass: "fa fa-twitter",
       mode: "view",
       action: function(event) {
-        var url = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(window.getSelection().toString()+ " - " + location.href);
+        var url = "https://twitter.com/intent/tweet?text=" + encodeURIComponent($.popline.utils.selection().text() + " - " + location.href);
         openWindow(url, true);
       }
     },
@@ -43,7 +43,7 @@
         var url = "http://www.facebook.com/sharer.php";
         params = [];
         params.push("s=100");
-        params.push("p[summary]=" + encodeURIComponent(window.getSelection().toString()));
+        params.push("p[summary]=" + encodeURIComponent($.popline.utils.selection().text()));
         params.push("p[url]=" + encodeURIComponent(location.href));
         openWindow(url + "?" + params.join("&"), true);
       }
@@ -53,8 +53,14 @@
       mode: "view",
       action: function(event) {
         var url = "http://pinterest.com/pin/create/button/";
-        var range = window.getSelection().getRangeAt(0);
-        var fragment = range.cloneContents();
+        var range = $.popline.utils.selection().range();
+        var fragment = null;
+        if ($.popline.utils.browser.ieLtIE9()) {
+          fragment = range.htmlText;
+        } else {
+          fragment = range.cloneContents();
+        }
+
         var $p = $("<p />");
         $p.append(fragment);
         var $img = $p.find("img:first");

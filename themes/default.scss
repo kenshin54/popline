@@ -11,13 +11,22 @@
   background: -webkit-linear-gradient(top, $colors);
   background: -o-linear-gradient(top, $colors);
   background: -ms-linear-gradient(top, $colors);
-  background: linear-gradient(to bottom, $colors); 
+  $start: str-slice(inspect(nth($colors, 1)), 1, 7);
+  $end: str-slice(inspect(nth($colors, length($colors))), 1, 7);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#{$start}', endColorstr='#{$end}',GradientType=0 );
+  background: linear-gradient(to bottom, $colors);
 }
 
 @mixin box-shadow($shadow...) {
   -webkit-box-shadow: $shadow;
   -moz-box-shadow:    $shadow;
   box-shadow:         $shadow;
+}
+
+@mixin opacity($value) {
+  opacity : $value;
+  $v: $value * 100;
+  -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=#{$v})";
 }
 
 @mixin placeholder($color) {
@@ -44,8 +53,6 @@ $font-size: 24px;
     font-size: $font-size;
     font-weight: bold;
     cursor: pointer;
-    padding: 0 18px;
-    min-width: 24px;
     text-align: center;
     display: inline-block;
     @media screen and (-webkit-min-device-pixel-ratio:0) {
@@ -54,9 +61,20 @@ $font-size: 24px;
     .text {
       font-size: $font-size * 1.1;
     }
+    a {
+      outline: none;
+      padding: 0 18px;
+      display: inline-block;
+      min-width: 24px;
+      &:link, &:hover, &:visited, &:active {
+        color: white;
+        text-decoration: none;
+      }
+    }
   }
   .hover {
-    @include line-gradient(rgba(44,166,248,0.40) 0%, #2B8AE2 100%);
+    background-color: darken(#2B8AE2, 10%);
+    @include line-gradient(darken(#2CA6F8, 10%) 0%, darken(#2B8AE2, 10%) 100%);
     @include box-shadow(inset 0px 0px 8px rgba(0, 0, 0, 0.75));
   }
   .boxed {
@@ -72,14 +90,15 @@ $font-size: 24px;
   }
   .textfield {
     border: none;
-    height: 54px;
+    height: 52px;
+    height: 51px\9;
+    vertical-align: top;
     font-size: 24px;
-    padding: 0 10px;
     @include box-shadow(inset 0px 0px 6px 0px rgba(0,0,0,0.30));
+    background: darken(#2B8AE2, 10%)\9;
     background: rgba(74,74,74,0.15);
     color: #FFFFFF;
-    line-height: 31px;
-    margin-left: 10px;
+    line-height: 51px;
     display: none;
     outline: none;
     width: 300px;

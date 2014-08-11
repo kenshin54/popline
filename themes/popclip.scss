@@ -11,7 +11,10 @@
   background: -webkit-linear-gradient(top, $colors);
   background: -o-linear-gradient(top, $colors);
   background: -ms-linear-gradient(top, $colors);
-  background: linear-gradient(to bottom, $colors); 
+  $start: str-slice(inspect(nth($colors, 1)), 1, 7);
+  $end: str-slice(inspect(nth($colors, length($colors))), 1, 7);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#{$start}', endColorstr='#{$end}',GradientType=0 );
+  background: linear-gradient(to bottom, $colors);
 }
 
 $font-size: 14px;
@@ -35,13 +38,21 @@ $font-size: 14px;
     font-weight: bold;
     float: left;
     cursor: pointer;
-    padding: 0 8px;
     text-align: center;
     @media screen and (-webkit-min-device-pixel-ratio:0) {
       i { font-weight: bold; }
     }
     .text {
       font-size: $font-size * 1.1;
+    }
+    a {
+      outline: none;
+      display: inline-block;
+      padding: 0 8px;
+      &:link, &:hover, &:visited, &:active {
+        color: white;
+        text-decoration: none;
+      }
     }
   }
   .hover {
@@ -61,6 +72,7 @@ $font-size: 14px;
   .textfield {
     border: none;
     padding: 4px;
+    padding: 4px 4px 5px 4px\9;
     margin-left: 10px;
     @include rounded-corners(5px);
     display: none;

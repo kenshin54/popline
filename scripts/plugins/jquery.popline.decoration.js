@@ -1,10 +1,10 @@
 /*
-  jquery.popline.decoration.js 0.0.1
+  jquery.popline.decoration.js 0.1.0-dev
 
-  Version: 0.0.1
-  Updated: May 18th, 2013
+  Version: 0.1.0-dev
+  Updated: Aug 11th, 2014
 
-  (c) 2013 by kenshin54
+  (c) 2014 by kenshin54
 */
 ;(function($) {
 

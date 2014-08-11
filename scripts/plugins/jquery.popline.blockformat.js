@@ -1,18 +1,24 @@
 /*
-  jquery.popline.blockformat.js 0.0.1
+  jquery.popline.blockformat.js 0.1.0-dev
 
-  Version: 0.0.1
-  Updated: May 18th, 2013
+  Version: 0.1.0-dev
+  Updated: Aug 11th, 2014
 
-  (c) 2013 by kenshin54
+  (c) 2014 by kenshin54
 */
 ;(function($) {
 
   var tags = ["P", "H1", "H2", "H3", "H4", "H5", "H6", "VOID"];
 
-  var wrap = function(tag) {
+  var voidClass = "popline-el-void";
+
+  // in order to support `undo format` feature
+  // we don't use document.execCommand('formatblock', false, "<H1>") directly
+  // instead, use some trick to do this
+
+  var commonWrap = function(tag) {
     var range = window.getSelection().getRangeAt(0);
-    var anchorNode = window.getSelection().anchorNode, focusNode = window.getSelection().focusNode;
+    var focusNode = window.getSelection().focusNode;
     var matchedNode = $.popline.utils.findNodeWithTags(focusNode, tags);
     tag = matchedNode && matchedNode.tagName === tag ? "VOID" : tag;
     var node = document.createElement(tag);
@@ -25,6 +31,40 @@
 
     range.insertNode(node);
     window.getSelection().selectAllChildren(node);
+  }
+
+  var ieWrap = function(tag) {
+    var text = $.popline.utils.selection().text();
+    var range = $.popline.utils.selection().range();
+    var matchedNode = $.popline.utils.findNodeWithTags(range.parentElement(), tags);
+    tag = matchedNode && matchedNode.tagName === tag ? "SPAN" : tag;
+    var id = "popline-el-" + $.popline.utils.randomNumber();
+    var clazz = "";
+    // if brower lt IE9, we can not use a pseudo tag(VOID) to mark dom
+    // so we use span tag and a special class to mark it
+    if (tag === "SPAN") {
+      clazz = " class='" + voidClass + "'";
+    }
+    if ($.popline.utils.isNull(matchedNode) && $(range.parentElement()).hasClass(voidClass)) {
+      matchedNode = range.parentElement();
+    }
+    if (matchedNode) {
+      $(matchedNode).remove();
+    }
+    range.pasteHTML("<" + tag + " id='" + id + "'" + clazz + ">" + text + "</" + tag + ">");
+    var $node = $("#" + id);
+    range.moveToElementText($node[0]);
+    range.select();
+    $node.removeAttr("id")
+  }
+
+  var wrap = function(tag) {
+    if ($.popline.utils.browser.ieLtIE9()) {
+      ieWrap(tag);
+    } else {
+      commonWrap(tag);
+    }
+
   }
 
   var removeEmptyTag = function(node) {
@@ -83,7 +123,7 @@
         }
       },
       afterHide: function(popline){
-        popline.target.find("void").contents().unwrap();
+        popline.target.find("void, ." + voidClass).contents().unwrap();
       }
     }
   });
