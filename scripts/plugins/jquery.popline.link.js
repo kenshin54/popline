@@ -9,6 +9,7 @@
   ;(function($) {
 
     var pattern = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/
+    var protocolPattern = /.+:\/\//
 
     var selectionIsLink = function() {
       var result = false;
@@ -43,10 +44,14 @@
       $textField.keyup(function(event) {
         if (event.which === 13) {
           $(this).blur();
-          if (pattern.test($(this).val())) {
+          text = $(this).val();
+          if (!protocolPattern.test(text)) {
+            text = "http://" + text;
+          }
+          if (pattern.test(text)) {
             $.popline.utils.selection().empty();
             $.popline.utils.selection().select(button.data('selection'));
-            document.execCommand("createlink", false, $(this).val());
+            document.execCommand("createlink", false, text);
           } else {
             $.popline.utils.selection().select(button.data('selection'));
           }
