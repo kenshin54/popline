@@ -41,6 +41,6 @@ blockquote {
   font-weight: normal;
   width: 100%;
   height: 760px;
-  line-height: 30px;
+  line-height: normal;
   outline: none;
 }
