@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>popline - An HTML5 Rich-Text-Editor Toolbar</title>
+  <link rel="stylesheet" type="text/css" href="css/normalize.css" />
+  <link rel="stylesheet" type="text/css" href="css/toggle-switch.css" />
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="themes/default.css" />
+  <link rel="stylesheet" type="text/css" href="css/page.css" />
+  <!--[if lt IE 9]>
+    <script type="text/javascript" src="scripts/html5shiv.min.js"></script>
+  <![endif]-->
+  <script type="text/javascript" src="scripts/jquery.min.js"></script>
+  <script type="text/javascript" src="scripts/jquery.popline.js"></script>
+  <script type="text/javascript" src="scripts/plugins/jquery.popline.link.js"></script>
+  <script type="text/javascript" src="scripts/plugins/jquery.popline.blockquote.js"></script>
+  <script type="text/javascript" src="scripts/plugins/jquery.popline.decoration.js"></script>
+  <script type="text/javascript" src="scripts/plugins/jquery.popline.list.js"></script>
+  <script type="text/javascript" src="scripts/plugins/jquery.popline.justify.js"></script>
+  <script type="text/javascript" src="scripts/plugins/jquery.popline.blockformat.js"></script>
+  <script type="text/javascript" src="scripts/plugins/jquery.popline.social.js"></script>
+  <script type="text/javascript" src="scripts/plugins/jquery.popline.backcolor.js"></script>
+  <script type="text/javascript">
+    $(function(){
+      if ($.popline.utils.browser.ie) {
+        if ($.popline.utils.browser.ieVersion() < 9) {
+          $.popline.utils.fixIE8();
+        }
+      } else {
+        document.execCommand('defaultParagraphSeparator', false, 'p');
+      }
+      $(".editor").popline({position: "fixed"});
+      $("input[name='mode']").click(function(){
+        $(".editor").popline("destroy");
+        $(".editor").attr("contenteditable", this.id === "edit");
+        $(".editor").popline({mode: this.id, position: $("input[name='position']:checked").attr("id")});
+      });
+      $("input[name='position']").click(function(){
+        $(".editor").popline("setPosition", this.id);
+      });
+    });
+  </script>
+</head>
+<body>
+  <div class="switcher">
+    <div class="switch-toggle candy blue">
+      <input id="edit" name="mode" type="radio" checked="">
+      <label for="edit">Edit</label>
+
+      <input id="view" name="mode" type="radio">
+      <label for="view">View</label>
+
+      <a></a>
+    </div>
+    <div class="switch-toggle candy blue">
+      <input id="fixed" name="position" type="radio" checked="">
+      <label for="fixed">Fixed</label>
+
+      <input id="relative" name="position" type="radio">
+      <label for="relative">Relative</label>
+
+      <a></a>
+    </div>
+  </div>
+  <section class="container">
+    <article class="content">
+      <div class="editor" contenteditable="true">
+        <p><a href="https://github.com/kenshin54/popline">Popline</a> is a non-intrusive <font color="#00ae52">WYSIWYG</font> editor.</p>
+        <p>It shows up only after selecting a piece of text on the page.</p>
+        <p>Inspired by <a href="http://pilotmoon.com/popclip/" target="_blank">popclip</a>.</p>
+        <p>It provides commonly used editing features <b>out-of-the-box</b>.</p>
+        <blockquote>Easy to extend, Easy to customize.</blockquote>
+        <p>Two modes supported, <i>Edit mode</i> and <i>View mode</i>.</p>
+        <p>Two popup ways supported, <u>Fixed</u> and <u>Relative</u>.</p>
+        <p>
+          The default theme popline used is designed by <a target="_blank" href="https://twitter.com/PepsinY">@Pepsin</a>, Thanks.
+        </p>
+        <p style="text-align: right;">happy to use <i class="fa fa-smile-o"></i></p>
+        <p style="text-align: right;"><a target="_blank" href="https://twitter.com/kenshin54">@kenshin54</a></p>
+      </div>
+    </article>
+  </section>
+</body>
+</html>
