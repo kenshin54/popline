@@ -67,7 +67,6 @@
       mode: "edit",
       beforeShow: function(popline) {
         var $a = this.find("a");
-        console.log($a);
         if (selectionIsLink()) {
           $a.removeClass("fa fa-link").addClass("fa fa-unlink");
         }else {
