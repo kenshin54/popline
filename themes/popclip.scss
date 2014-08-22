@@ -46,6 +46,9 @@ $font-size: 14px;
       display: inline-block;
       position: relative;
     }
+    .fa, .text {
+      -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+    }
     a {
       outline: none;
       display: inline-block;

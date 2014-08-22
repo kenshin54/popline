@@ -23,15 +23,6 @@
   box-shadow:         $shadow;
 }
 
-@mixin opacity($value) {
-  opacity : $value;
-  $v: $value * 100;
-  -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=#{$v})";
-}
-
-@mixin placeholder($color) {
-}
-
 $font-size: 24px;
 .popline {
   position: absolute;
@@ -61,6 +52,9 @@ $font-size: 24px;
       top: -3px;
       display: inline-block;
       position: relative;
+    }
+    .fa, .text {
+      -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
     }
     a {
       margin: 0;

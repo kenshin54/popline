@@ -37,6 +37,8 @@
       top: -3px;
       display: inline-block;
       position: relative; }
+    .popline li .fa, .popline li .text {
+      -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)"; }
     .popline li a {
       margin: 0;
       outline: none;

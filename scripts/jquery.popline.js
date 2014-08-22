@@ -256,6 +256,8 @@
                     $(_this).siblings("li").hide().end()
                          .children(".btn").hide().end()
                          .children("ul").show().end()
+                  }, function() {
+                     $(_this).find(".fa, .text").css({'-ms-filter':'progid:DXImageTransform.Microsoft.Alpha(Opacity=100)'});
                   });
                   event.stopPropagation();
                 }
@@ -343,9 +345,9 @@
             _this.bar.css("margin-top", _this.bar.height() + "px")
             _this.bar.css("left", position - _this.bar.width() / 2 + "px");
             if (typeof(showFunc) === "function") {
-              _this.bar.animate({ opacity: 1, marginTop: 0 }, showFunc)
+              _this.bar.animate({ opacity: 1, marginTop: 0 }, showFunc);
             }else {
-              _this.bar.animate({ opacity: 1, marginTop: 0 })
+              _this.bar.animate({ opacity: 1, marginTop: 0 });
             }
           });
         }
