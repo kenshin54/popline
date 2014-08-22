@@ -1,3 +1,4 @@
+@charset "UTF-8";
 .popline {
   position: absolute;
   -webkit-border-radius: 6px;
@@ -40,6 +41,7 @@
     .popline li .fa, .popline li .text {
       -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)"; }
     .popline li a {
+      background: url("data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBR‌​AA7") 0 0 repeat\9;
       margin: 0;
       outline: none;
       padding: 18px;
