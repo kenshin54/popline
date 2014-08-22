@@ -48,7 +48,7 @@
     if ($.popline.utils.isNull(matchedNode) && $(range.parentElement()).hasClass(voidClass)) {
       matchedNode = range.parentElement();
     }
-    if (matchedNode) {
+    if (matchedNode && $(matchedNode).text() === text) {
       $(matchedNode).remove();
     }
     range.pasteHTML("<" + tag + " id='" + id + "'" + clazz + ">" + text + "</" + tag + ">");
