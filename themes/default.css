@@ -1,7 +1,5 @@
 .popline {
   position: absolute;
-  height: 54px;
-  line-height: 54px;
   -webkit-border-radius: 6px;
   -moz-border-radius: 6px;
   -ms-border-radius: 6px;
@@ -20,7 +18,7 @@
   display: none;
   margin: 0;
   list-style: none;
-  padding: 0px 5px;
+  padding: 0px 2px;
   font-family: Arial, Helvetica, "Hiragino Sans GB", sans-serif;
   text-rendering: optimizeLegibility;
   white-space: nowrap; }
@@ -35,10 +33,16 @@
       .popline li i {
         font-weight: bold; } }
     .popline li .text {
-      font-size: 26.4px; }
+      font-size: 26.4px;
+      top: -3px;
+      display: inline-block;
+      position: relative; }
     .popline li a {
+      margin: 0;
       outline: none;
-      padding: 0 18px;
+      padding: 18px;
+      height: 22px;
+      vertical-align: middle;
       display: inline-block;
       min-width: 24px; }
       .popline li a:link, .popline li a:hover, .popline li a:visited, .popline li a:active {
@@ -65,8 +69,8 @@
     padding: 0; }
   .popline .textfield {
     border: none;
-    height: 52px;
-    height: 51px\9;
+    height: 56px;
+    height: 55px\9;
     vertical-align: top;
     font-size: 24px;
     -webkit-box-shadow: inset 0px 0px 6px 0px rgba(0, 0, 0, 0.3);

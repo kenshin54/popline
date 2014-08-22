@@ -20,8 +20,6 @@
 $font-size: 14px;
 .popline {
   position: absolute;
-  height: 25px;
-  line-height: 25px;
   @include rounded-corners(5px);
   @include line-gradient(#858585 0%, #3E3E3E 50%, #303030 51%, #303030 100%);
   opacity: 0.95;
@@ -29,7 +27,7 @@ $font-size: 14px;
   display: none;
   margin: 0;
   list-style: none;
-  padding: 0px 5px;
+  padding: 0px 2px;
   font-family: Arial, Helvetica, "Hiragino Sans GB", sans-serif;
   text-rendering: optimizeLegibility;
   li {
@@ -44,11 +42,17 @@ $font-size: 14px;
     }
     .text {
       font-size: $font-size * 1.1;
+      top: -2px;
+      display: inline-block;
+      position: relative;
     }
     a {
       outline: none;
       display: inline-block;
-      padding: 0 8px;
+      padding: 8px;
+      height: 14px;
+      vertical-align: middle;
+      min-width: 14px;
       &:link, &:hover, &:visited, &:active {
         color: white;
         text-decoration: none;
@@ -73,7 +77,7 @@ $font-size: 14px;
     border: none;
     padding: 4px;
     padding: 4px 4px 5px 4px\9;
-    margin-left: 10px;
+    margin-left: 5px;
     @include rounded-corners(5px);
     display: none;
     outline: none;

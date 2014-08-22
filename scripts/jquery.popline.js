@@ -228,7 +228,7 @@
             }
 
             if (button.text) {
-              $button.children(".btn").append("<a class='text' href='javascript:void(0);'>" + button.text + "</a>");
+              $button.children(".btn").append("<a href='javascript:void(0);'><span class='text'>" + button.text + "</span></a>");
             }
 
             if (button.bgColor) {

@@ -35,8 +35,6 @@
 $font-size: 24px;
 .popline {
   position: absolute;
-  height: 54px;
-  line-height: 54px;
   @include rounded-corners(6px);
   @include box-shadow(0px 2px 8px rgba(0, 0, 0, 0.75));
   @include line-gradient(#2CA6F8 0%, #2B8AE2 100%);
@@ -44,7 +42,7 @@ $font-size: 24px;
   display: none;
   margin: 0;
   list-style: none;
-  padding: 0px 5px;
+  padding: 0px 2px;
   font-family: Arial, Helvetica, "Hiragino Sans GB", sans-serif;
   text-rendering: optimizeLegibility;
   white-space: nowrap;
@@ -60,10 +58,16 @@ $font-size: 24px;
     }
     .text {
       font-size: $font-size * 1.1;
+      top: -3px;
+      display: inline-block;
+      position: relative;
     }
     a {
+      margin: 0;
       outline: none;
-      padding: 0 18px;
+      padding: 18px;
+      height: 22px;
+      vertical-align: middle;
       display: inline-block;
       min-width: 24px;
       &:link, &:hover, &:visited, &:active {
@@ -90,8 +94,8 @@ $font-size: 24px;
   }
   .textfield {
     border: none;
-    height: 52px;
-    height: 51px\9;
+    height: 56px;
+    height: 55px\9;
     vertical-align: top;
     font-size: 24px;
     @include box-shadow(inset 0px 0px 6px 0px rgba(0,0,0,0.30));

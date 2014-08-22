@@ -1,7 +1,5 @@
 .popline {
   position: absolute;
-  height: 25px;
-  line-height: 25px;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   -ms-border-radius: 5px;
@@ -18,7 +16,7 @@
   display: none;
   margin: 0;
   list-style: none;
-  padding: 0px 5px;
+  padding: 0px 2px;
   font-family: Arial, Helvetica, "Hiragino Sans GB", sans-serif;
   text-rendering: optimizeLegibility; }
   .popline li {
@@ -32,11 +30,17 @@
       .popline li i {
         font-weight: bold; } }
     .popline li .text {
-      font-size: 15.4px; }
+      font-size: 15.4px;
+      top: -2px;
+      display: inline-block;
+      position: relative; }
     .popline li a {
       outline: none;
       display: inline-block;
-      padding: 0 8px; }
+      padding: 8px;
+      height: 14px;
+      vertical-align: middle;
+      min-width: 14px; }
       .popline li a:link, .popline li a:hover, .popline li a:visited, .popline li a:active {
         color: white;
         text-decoration: none; }
@@ -59,7 +63,7 @@
     border: none;
     padding: 4px;
     padding: 4px 4px 5px 4px\9;
-    margin-left: 10px;
+    margin-left: 5px;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     -ms-border-radius: 5px;
