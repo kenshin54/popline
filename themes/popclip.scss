@@ -40,13 +40,13 @@ $font-size: 14px;
     @media screen and (-webkit-min-device-pixel-ratio:0) {
       i { font-weight: bold; }
     }
-    .text {
+    .popline-text {
       font-size: $font-size * 1.1;
       top: -2px;
       display: inline-block;
       position: relative;
     }
-    .fa, .text {
+    .fa, .popline-background-fix {
       -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
     }
     a {
@@ -63,21 +63,21 @@ $font-size: 14px;
       }
     }
   }
-  .hover {
+  .popline-hover {
     @include line-gradient(#7096F8 0%, #3A6FF3 50%, #2B64F3 51%, #2B64F3 100%);
   }
-  .boxed {
+  .popline-boxed {
     padding: 0;
   }
-  .lighter {
+  .popline-lighter {
     font-weight: lighter;
   }
-  .subbar {
+  .popline-subbar {
     display: none;
     list-style: none;
     padding: 0;
   }
-  .textfield {
+  .popline-textfield {
     border: none;
     padding: 4px;
     padding: 4px 4px 5px 4px\9;

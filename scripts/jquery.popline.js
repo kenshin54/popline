@@ -219,20 +219,21 @@
                 || isDisable(this.settings.disable, name)) {
               continue;
             }
-            var $button = $("<li><span class='btn'></span></li>");
+            var $button = $("<li><span class='popline-btn'></span></li>");
 
             $button.addClass("popline-button popline-" + name + "-button")
 
             if (button.iconClass) {
-               $button.children(".btn").append("<a class='" + button.iconClass + "' href='javascript:void(0);'></a>");
+               $button.children(".popline-btn").append("<a class='" + button.iconClass + "' href='javascript:void(0);'></a>");
             }
 
             if (button.text) {
-              $button.children(".btn").append("<a href='javascript:void(0);'><span class='text'>" + button.text + "</span></a>");
+              $button.children(".popline-btn").append("<a href='javascript:void(0);'><span class='popline-text popline-background-fix'>" + button.text + "</span></a>");
             }
 
             if (button.bgColor) {
               $button.css({'background-color': button.bgColor});
+              $button.find("span.popline-text").removeClass('popline-background-fix');
             }
 
             if ($.isFunction(button.beforeShow)) {
@@ -246,18 +247,16 @@
             $button.appendTo(parent);
 
             if (button.buttons) {
-              $subbar = $("<ul class='subbar'></ul>");
+              $subbar = $("<ul class='popline-subbar'></ul>");
               $button.append($subbar);
               makeButtons.call(this, $subbar, button.buttons);
               $button.click(function(event) {
                 var _this = this;
-                if (!$(this).hasClass("boxed")) {
+                if (!$(this).hasClass("popline-boxed")) {
                   me.switchBar($(this), function() {
                     $(_this).siblings("li").hide().end()
-                         .children(".btn").hide().end()
+                         .children(".popline-btn").hide().end()
                          .children("ul").show().end()
-                  }, function() {
-                     $(_this).find(".fa, .text").css({'-ms-filter':'progid:DXImageTransform.Microsoft.Alpha(Opacity=100)'});
                   });
                   event.stopPropagation();
                 }
@@ -286,14 +285,14 @@
         this.target.bind(targetEvent);
 
         this.bar.on("mouseenter", "li", function(event) {
-          if (!($(this).hasClass("boxed"))) {
-            $(this).addClass("hover");
+          if (!($(this).hasClass("popline-boxed"))) {
+            $(this).addClass("popline-hover");
           }
           event.stopPropagation();
         });
         this.bar.on("mouseleave", "li", function(event) {
-          if (!($(this).hasClass("boxed"))) {
-            $(this).removeClass("hover");
+          if (!($(this).hasClass("popline-boxed"))) {
+            $(this).removeClass("popline-hover");
           }
           event.stopPropagation();
         });
@@ -315,10 +314,10 @@
         var _this = this;
         if (this.bar.is(":visible") && !this.bar.is(":animated")) {
           this.bar.fadeOut(function(){
-            _this.bar.find("li").removeClass("boxed").show();
-            _this.bar.find(".subbar").hide();
-            _this.bar.find(".textfield").hide();
-            _this.bar.find(".btn").show();
+            _this.bar.find("li").removeClass("popline-boxed").show();
+            _this.bar.find(".popline-subbar").hide();
+            _this.bar.find(".popline-textfield").hide();
+            _this.bar.find(".popline-btn").show();
             for (var i = 0, l = _this.afterHideCallbacks.length; i < l; i++) {
               var obj = _this.afterHideCallbacks[i];
               var $button = _this.bar.find("li.popline-" + obj.name + "-button");
@@ -341,7 +340,7 @@
           var position = parseInt(_this.bar.css('left')) + _this.bar.width() / 2;
           _this.bar.animate({ opacity: 0, marginTop: -_this.bar.height() + 'px' }, function() {
             hideFunc.call(this);
-            button.removeClass('hover').addClass('boxed').show();
+            button.removeClass('popline-hover').addClass('popline-boxed').show();
             _this.bar.css("margin-top", _this.bar.height() + "px")
             _this.bar.css("left", position - _this.bar.width() / 2 + "px");
             if (typeof(showFunc) === "function") {

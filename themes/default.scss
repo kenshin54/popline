@@ -47,13 +47,13 @@ $font-size: 24px;
     @media screen and (-webkit-min-device-pixel-ratio:0) {
       i { font-weight: bold; }
     }
-    .text {
+    .popline-text {
       font-size: $font-size * 1.1;
       top: -3px;
       display: inline-block;
       position: relative;
     }
-    .fa, .text {
+    .fa, .popline-background-fix {
       -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
     }
     a {
@@ -71,23 +71,23 @@ $font-size: 24px;
       }
     }
   }
-  .hover {
+  .popline-hover {
     background-color: darken(#2B8AE2, 10%);
     @include line-gradient(darken(#2CA6F8, 10%) 0%, darken(#2B8AE2, 10%) 100%);
     @include box-shadow(inset 0px 0px 8px rgba(0, 0, 0, 0.75));
   }
-  .boxed {
+  .popline-boxed {
     padding: 0 9px;
   }
-  .lighter {
+  .popline-lighter {
     font-weight: lighter;
   }
-  .subbar {
+  .popline-subbar {
     display: none;
     list-style: none;
     padding: 0;
   }
-  .textfield {
+  .popline-textfield {
     border: none;
     height: 56px;
     height: 55px\9;
@@ -102,8 +102,8 @@ $font-size: 24px;
     outline: none;
     width: 300px;
   }
-  .textfield::-webkit-input-placeholder { color: #EEE; }
-  .textfield:-moz-placeholder { color: #EEE; }
-  .textfield::-moz-placeholder { color: #EEE; }
-  .textfield:-ms-input-placeholder { color: #EEE; }
+  .popline-textfield:-webkit-input-placeholder { color: #EEE; }
+  .popline-textfield:-moz-placeholder { color: #EEE; }
+  .popline-textfield:-moz-placeholder { color: #EEE; }
+  .popline-textfield:-ms-input-placeholder { color: #EEE; }
 }

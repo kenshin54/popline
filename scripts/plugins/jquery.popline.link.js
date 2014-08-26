@@ -38,7 +38,7 @@
   var buildTextField = function(popline, button) {
     if (button.find(":text").length === 0) {
       var $textField = $("<input type='text' />");
-      $textField.addClass("textfield");
+      $textField.addClass("popline-textfield");
       $textField.attr("placeholder", "http://");
 
       $textField.keyup(function(event) {

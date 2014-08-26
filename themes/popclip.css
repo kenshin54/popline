@@ -30,12 +30,12 @@
     @media screen and (-webkit-min-device-pixel-ratio: 0) {
       .popline li i {
         font-weight: bold; } }
-    .popline li .text {
+    .popline li .popline-text {
       font-size: 15.4px;
       top: -2px;
       display: inline-block;
       position: relative; }
-    .popline li .fa, .popline li .text {
+    .popline li .fa, .popline li .popline-background-fix {
       -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)"; }
     .popline li a {
       background: url("data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBR‌​AA7") 0 0 repeat\9;
@@ -48,22 +48,22 @@
       .popline li a:link, .popline li a:hover, .popline li a:visited, .popline li a:active {
         color: white;
         text-decoration: none; }
-  .popline .hover {
+  .popline .popline-hover {
     background: -moz-linear-gradient(top, #7096f8 0%, #3a6ff3 50%, #2b64f3 51%, #2b64f3 100%);
     background: -webkit-linear-gradient(top, #7096f8 0%, #3a6ff3 50%, #2b64f3 51%, #2b64f3 100%);
     background: -o-linear-gradient(top, #7096f8 0%, #3a6ff3 50%, #2b64f3 51%, #2b64f3 100%);
     background: -ms-linear-gradient(top, #7096f8 0%, #3a6ff3 50%, #2b64f3 51%, #2b64f3 100%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#7096f8', endColorstr='#2b64f3',GradientType=0 );
     background: linear-gradient(to bottom, #7096f8 0%, #3a6ff3 50%, #2b64f3 51%, #2b64f3 100%); }
-  .popline .boxed {
+  .popline .popline-boxed {
     padding: 0; }
-  .popline .lighter {
+  .popline .popline-lighter {
     font-weight: lighter; }
-  .popline .subbar {
+  .popline .popline-subbar {
     display: none;
     list-style: none;
     padding: 0; }
-  .popline .textfield {
+  .popline .popline-textfield {
     border: none;
     padding: 4px;
     padding: 4px 4px 5px 4px\9;
