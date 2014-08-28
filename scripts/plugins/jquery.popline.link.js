@@ -93,13 +93,14 @@
               buildTextField(popline, $_this);
 
               if (!$_this.hasClass("boxed")) {
+                $_this.data('selection', $.popline.utils.selection().range());
+                $.popline.utils.selection().empty();
                 popline.switchBar($_this, function() {
                   $_this.siblings("li").hide().end()
-                  .children(":text").show().end()
+                  .children(":text").show().end();
                 }, function() {
-                  $_this.children(":text").focus()
+                  $_this.children(":text").focus();
                 });
-                $_this.data('selection', $.popline.utils.selection().range());
                 event.stopPropagation();
               }
             }

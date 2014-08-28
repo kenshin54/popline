@@ -55,9 +55,12 @@
     },
     keydown: function(event) {
       $.popline.current = $(this).data("popline");
-      var rects = $.popline.utils.selection().range().getClientRects();
-      if (rects.length > 0) {
-        $(this).data('lastKeyPos', $.popline.boundingRect());
+      var text = $.popline.utils.selection().text();
+      if (!$.popline.utils.isNull(text) && $.trim(text) !== "") {
+        var rects = $.popline.utils.selection().range().getClientRects();
+        if (rects.length > 0) {
+          $(this).data('lastKeyPos', $.popline.boundingRect());
+        }
       }
     }
   }
