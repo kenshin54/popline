@@ -8,6 +8,21 @@
 */
 ;(function($) {
 
+  var firefoxUnquote = function() {
+    var focusNode = $.popline.utils.selection().focusNode();
+    var node = $.popline.utils.findNodeWithTags(focusNode, 'BLOCKQUOTE');
+    var range = $.popline.utils.selection().range();
+    var startContainer = range.startContainer,
+      startOffset = range.startOffset,
+      endContainer = range.endContainer,
+      endOffset = range.endOffset;
+    $(node).children().unwrap();
+    var newRange = document.createRange();
+    newRange.setStart(startContainer, startOffset);
+    newRange.setEnd(endContainer, endOffset);
+    $.popline.utils.selection().select(newRange);
+  }
+
   var quoteUtils = function() {
     if ($.popline.utils.browser.ie) {
       return {
@@ -24,7 +39,11 @@
           document.execCommand('formatblock', false, 'BLOCKQUOTE');
         },
         unquote: function() {
-          document.execCommand('formatblock', false, 'P');
+          if ($.popline.utils.browser.firefox) {
+            firefoxUnquote();
+          } else {
+            document.execCommand('formatblock', false, 'P');
+          }
         }
       }
     }
