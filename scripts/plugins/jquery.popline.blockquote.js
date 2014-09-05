@@ -9,13 +9,13 @@
 ;(function($) {
 
   var firefoxUnquote = function() {
-    var focusNode = $.popline.utils.selection().focusNode();
+    var selection = $.popline.utils.selection().obj();
+    var focusNode = selection.focusNode;
     var node = $.popline.utils.findNodeWithTags(focusNode, 'BLOCKQUOTE');
-    var range = $.popline.utils.selection().range();
-    var startContainer = range.startContainer,
-      startOffset = range.startOffset,
-      endContainer = range.endContainer,
-      endOffset = range.endOffset;
+    var startContainer = selection.anchorNode,
+      startOffset = selection.anchorOffset,
+      endContainer = selection.focusNode,
+      endOffset = selection.focusOffset;
     $(node).children().unwrap();
     var newRange = document.createRange();
     newRange.setStart(startContainer, startOffset);
