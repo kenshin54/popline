@@ -1,7 +1,7 @@
 body {
   padding: 0;
   margin: 0;
-  background-color: #F8F6F5;
+  background-color: #FFFFFF;
 }
 
 a { color: #2E8CFA; }
@@ -22,8 +22,9 @@ blockquote {
   position: fixed;
   top: 20px;
   left: 10px;
-  font-family: sans-serif;
-  font-size: 16px;
+  font-family: Helvetica, Arial;
+  font-weight: bold;
+  font-size: 15px;
 }
 
 .switcher .switch-toggle {
@@ -43,4 +44,8 @@ blockquote {
   height: 760px;
   line-height: normal;
   outline: none;
+}
+
+.hide {
+  display: none;
 }

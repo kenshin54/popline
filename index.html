@@ -26,8 +26,11 @@
       if ($.popline.utils.browser.ie) {
         if ($.popline.utils.browser.ieVersion() < 9) {
           $.popline.utils.fixIE8();
+        } else {
+          $(".switcher").show();
         }
       } else {
+        $(".switcher").show();
         document.execCommand('defaultParagraphSeparator', false, 'p');
       }
       $(".editor").popline({position: "fixed"});
@@ -51,8 +54,8 @@
     js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=138812102872297";
     fjs.parentNode.insertBefore(js, fjs);
   }(document, 'script', 'facebook-jssdk'));</script>
-  <div class="switcher">
-    <div class="switch-toggle candy blue">
+  <div class="switcher hide">
+    <div class="switch-toggle switch-2 switch-ios">
       <input id="edit" name="mode" type="radio" checked="">
       <label for="edit">Edit</label>
 
@@ -61,7 +64,7 @@
 
       <a></a>
     </div>
-    <div class="switch-toggle candy blue">
+    <div class="switch-toggle switch-2 switch-ios">
       <input id="fixed" name="position" type="radio" checked="">
       <label for="fixed">Fixed</label>
 
