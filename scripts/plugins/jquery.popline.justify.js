@@ -1,8 +1,8 @@
 /*
-  jquery.popline.justify.js 0.1.0-dev
+  jquery.popline.justify.js 1.0.0
 
-  Version: 0.1.0-dev
-  Updated: Aug 11th, 2014
+  Version: 1.0.0
+  Updated: Sep 10th, 2014
 
   (c) 2014 by kenshin54
 */
