@@ -20,6 +20,7 @@
     var newRange = document.createRange();
     newRange.setStart(startContainer, startOffset);
     newRange.setEnd(endContainer, endOffset);
+    $.popline.utils.selection().empty();
     $.popline.utils.selection().select(newRange);
   }
 
