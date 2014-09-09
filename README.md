@@ -92,7 +92,11 @@ Hack the theme css and create yours.
 
 ## Compatibility
 
-Tested on Chrome 27.0, Safari 6.0.4, Firefox 21.0, Opera 15.0
+Tested on Chrome 27.0+, Safari 6.0.4+, Firefox 21.0+, Opera 15.0+, IE 8+
+
+## Sponsorer
+
+A Sepcial thanks to [Artlogic](http://www.artlogic.net/)'s sponsor for IE8+ browsers compatibility support.
 
 ## Contributing
 
@@ -105,7 +109,7 @@ Tested on Chrome 27.0, Safari 6.0.4, Firefox 21.0, Opera 15.0
 License
 -------
 
-Copyright (c) 2013 kenshin54. Distributed under the MIT License. See LICENSE.txt for further details.
+Copyright (c) 2014 kenshin54. Distributed under the MIT License. See LICENSE.txt for further details.
 
 
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/kenshin54/popline/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
