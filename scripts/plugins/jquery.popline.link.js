@@ -8,8 +8,8 @@
   */
   ;(function($) {
 
-    var pattern = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/
-    var protocolPattern = /.+:\/\//
+    var pattern = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
+    var protocolPattern = /.+:\/\//;
 
     var selectionIsLink = function() {
       var result = false;
@@ -90,9 +90,8 @@
 
             }else {
 
-              buildTextField(popline, $_this);
-
-              if (!$_this.hasClass("boxed")) {
+              if (!$_this.hasClass("popline-boxed")) {
+                buildTextField(popline, $_this);
                 $_this.data('selection', $.popline.utils.selection().range());
                 $.popline.utils.selection().empty();
                 popline.switchBar($_this, function() {
