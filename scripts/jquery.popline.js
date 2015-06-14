@@ -28,7 +28,7 @@
     // var isTargetOrChild = $.contains($.popline.current.target.get(0), event.target) || $.popline.current.target.get(0) === event.target;
     // var isBarOrChild = $.contains($.popline.current.bar.get(0), event.target) || $.popline.current.bar.get(0) === event.target;
     // TODO disable check multiple popline check
-    if ($.popline.utils.selection().text().length > 0 && !$.popline.current.keepSlientWhenBlankSelected()) {
+    if ($.popline.utils.selection().text().length > 0 && !$.popline.current.keepSilentWhenBlankSelected()) {
       var target= $.popline.current.target, bar = $.popline.current.bar;
       if (bar.is(":hidden") || bar.is(":animated")) {
         bar.stop(true, true);
@@ -47,7 +47,7 @@
     },
     keyup: function(event) {
       var popline = $(this).data("popline"), bar = popline.bar;
-      if (!isIMEMode && $.popline.utils.selection().text().length > 0 && !popline.keepSlientWhenBlankSelected()) {
+      if (!isIMEMode && $.popline.utils.selection().text().length > 0 && !popline.keepSilentWhenBlankSelected()) {
         var pos = Position().keyup(event);
         $.popline.current.show(pos);
       }else {
@@ -162,7 +162,7 @@
       enable: null,
       disable: null,
       position: "fixed",
-      keepSlientWhenBlankSelected: true
+      keepSilentWhenBlankSelected: true
     },
 
     instances: [],
@@ -356,8 +356,8 @@
         }
       },
 
-      keepSlientWhenBlankSelected: function() {
-        if (this.settings.keepSlientWhenBlankSelected && $.trim($.popline.utils.selection().text()) === ""){
+      keepSilentWhenBlankSelected: function() {
+        if (this.settings.keepSilentWhenBlankSelected && $.trim($.popline.utils.selection().text()) === ""){
           return true;
         }else {
           return false;
