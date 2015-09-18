@@ -77,18 +77,22 @@
           var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
           if (left < 0) left = 10;
           var top = scrollTop + rect.top - bar.outerHeight() - 10;
+		  if (top < scrollTop) top = scrollTop + rect.bottom + 10 
           return {left: left, top: top};
         },
         keyup: function(event) {
           var left = null, top = null;
           var rect = $.popline.getRect(), keyMoved = $.popline.current.isKeyMove();
-          if (keyMoved === DOWN || keyMoved === RIGHT) {
-            left = rect.right - bar.width() / 2;
-          }else if (keyMoved === UP || keyMoved === LEFT) {
-            left = rect.left - bar.width() / 2;
-          }
+		  if (typeof (rect) !== undefined) {
+		    if (keyMoved === DOWN || keyMoved === RIGHT) {
+			  left = rect.right - bar.width() / 2;
+		    }else if (keyMoved === UP || keyMoved === LEFT) {
+			  left = rect.left - bar.width() / 2;
+		    }
+		  }
           var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
           top = scrollTop + rect.top - bar.outerHeight() - 10;
+		  if (top < scrollTop) top = scrollTop + rect.bottom + 10 
           return {left: left, top: top};
         }
       },
@@ -96,19 +100,26 @@
         mouseup: function(event) {
           var left = event.pageX - bar.width() / 2;
           if (left < 0) left = 10;
-          var top = event.pageY - bar.outerHeight() - parseInt(target.css('font-size')) / 2;
+		  var scrollTop = $(document).scrollTop();
+          var top = event.pageY - bar.outerHeight() - parseInt(target.css('font-size'));
+		  if (top < scrollTop) top = event.pageY + parseInt(target.css('font-size'));
           return {left: left, top: top};
         },
         keyup: function(event) {
           var left = null, top = null;
           var rect = $.popline.getRect(), keyMoved = $.popline.current.isKeyMove();
-          if (keyMoved === DOWN || keyMoved === RIGHT) {
-            left = rect.right - bar.width() / 2;
-            top = $(document).scrollTop() + rect.bottom - bar.outerHeight() - parseInt(target.css("font-size"));
-          }else if (keyMoved === UP || keyMoved === LEFT) {
-            left = rect.left - bar.width() / 2;
-            top = $(document).scrollTop() + rect.top - bar.outerHeight();
-          }
+		  if (typeof (rect) !== undefined) {
+		    var scrollTop = $(document).scrollTop();
+            if (keyMoved === DOWN || keyMoved === RIGHT) {
+              left = rect.right - bar.width() / 2;
+              top = scrollTop + rect.bottom - bar.outerHeight() - parseInt(target.css("font-size"));
+		      if (top < scrollTop) top = scrollTop + rect.bottom + parseInt(target.css('font-size'));
+            }else if (keyMoved === UP || keyMoved === LEFT) {
+              left = rect.left - bar.width() / 2;
+              top = scrollTop + rect.top - bar.outerHeight();
+			  if (top < scrollTop) top = scrollTop + rect.top + parseInt(target.css('font-size'));
+            }
+		  }
           return {left: left, top: top};
         }
       }
