@@ -28,7 +28,7 @@
     var isTargetOrChild = $.contains($.popline.current.target.get(0), event.target) || $.popline.current.target.get(0) === event.target;
     var isBarOrChild = $.contains($.popline.current.bar.get(0), event.target) || $.popline.current.bar.get(0) === event.target;
     // TODO disable check multiple popline check
-    if ((isTargetOrChild || isBarOrChild) && $.popline.utils.selection().text().length > 0 && !$.popline.current.keepSlientWhenBlankSelected()) {
+    if ((isTargetOrChild || isBarOrChild) && $.popline.utils.selection().text().length > 0 && !$.popline.current.keepSilentWhenBlankSelected()) {
       var target= $.popline.current.target, bar = $.popline.current.bar;
       if (bar.is(":hidden") || bar.is(":animated")) {
         bar.stop(true, true);
