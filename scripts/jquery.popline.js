@@ -25,10 +25,10 @@
     if ($.popline.utils.isNull($.popline.current)) {
       return;
     }
-    // var isTargetOrChild = $.contains($.popline.current.target.get(0), event.target) || $.popline.current.target.get(0) === event.target;
-    // var isBarOrChild = $.contains($.popline.current.bar.get(0), event.target) || $.popline.current.bar.get(0) === event.target;
+    var isTargetOrChild = $.contains($.popline.current.target.get(0), event.target) || $.popline.current.target.get(0) === event.target;
+    var isBarOrChild = $.contains($.popline.current.bar.get(0), event.target) || $.popline.current.bar.get(0) === event.target;
     // TODO disable check multiple popline check
-    if ($.popline.utils.selection().text().length > 0 && !$.popline.current.keepSilentWhenBlankSelected()) {
+    if ((isTargetOrChild || isBarOrChild) && $.popline.utils.selection().text().length > 0 && !$.popline.current.keepSlientWhenBlankSelected()) {
       var target= $.popline.current.target, bar = $.popline.current.bar;
       if (bar.is(":hidden") || bar.is(":animated")) {
         bar.stop(true, true);
@@ -77,7 +77,7 @@
           var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
           if (left < 0) left = 10;
           var top = scrollTop + rect.top - bar.outerHeight() - 10;
-		  if (top < scrollTop) top = scrollTop + rect.bottom + 10 
+		  if (top < scrollTop) top = scrollTop + rect.bottom + 10
           return {left: left, top: top};
         },
         keyup: function(event) {
@@ -92,7 +92,7 @@
 		  }
           var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
           top = scrollTop + rect.top - bar.outerHeight() - 10;
-		  if (top < scrollTop) top = scrollTop + rect.bottom + 10 
+		  if (top < scrollTop) top = scrollTop + rect.bottom + 10
           return {left: left, top: top};
         }
       },
