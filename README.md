@@ -41,7 +41,7 @@ $(".editor").popline();
 
 ## View Mode
 
-Popline also support `View Mode`, you can send a twitter, a facebook message, pin an image to pinterst, search with google in `View Mode` 
+Popline also support `View Mode`, you can send a twitter, a facebook message, pin an image to pinterest, search with google in `View Mode` 
 
 
 ```js
