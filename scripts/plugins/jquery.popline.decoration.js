@@ -39,7 +39,13 @@
       action: function(event) {
         document.execCommand("underline");
       }
+    },
+    horisontal_line: {
+      iconClass: "fa fa-h-square",
+      mode: "edit",
+      action: function(event) {
+        document.execCommand( "insertHTML", false, $.popline.utils.selection().text() + "<hr>" );
+      }
     }
-
   });
 })(jQuery);
