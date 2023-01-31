@@ -2,8 +2,8 @@
   jquery.popline.decoration.js 1.0.0
 
   Version: 1.0.0
-  Updated: Sep 10th, 2014
-
+  Updated: Jan 30th, 2023 
+  Mons (https://github.com/blyamur)
   (c) 2014 by kenshin54
 */
 ;(function($) {
