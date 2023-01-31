@@ -3,8 +3,7 @@
 
   Version: 1.0.0
   Updated: Jan 31th, 2023
-
-  (c) 2023 by Blyamur
+  (c) 2023 by Mons (https://github.com/blyamur)
 */
 ;(function($) {
 
