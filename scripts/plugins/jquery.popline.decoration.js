@@ -2,9 +2,8 @@
   jquery.popline.decoration.js 1.0.0
 
   Version: 1.0.0
-  Updated: Jan 30th, 2023 
-  Mons (https://github.com/blyamur)
-  (c) 2014 by kenshin54
+  Updated: Jan 31th, 2023, Mons (https://github.com/blyamur)
+  (c) 2014 by kenshin54 
 */
 ;(function($) {
 
@@ -29,23 +28,25 @@
       iconClass: "fa fa-strikethrough",
       mode: "edit",
       action: function(event) {
-        document.execCommand("strikethrough");
-      }
-    },
-
-    underline: {
-      iconClass: "fa fa-underline",
-      mode: "edit",
-      action: function(event) {
-        document.execCommand("underline");
+        document.execCommand('strikethrough', false, null);
       }
     },
     horisontal_line: {
       iconClass: "fa fa-h-square",
       mode: "edit",
       action: function(event) {
-        document.execCommand( "insertHTML", false, $.popline.utils.selection().text() + "<hr>" );
+        var selectedText = $.popline.utils.selection().text();
+        var cleanText = selectedText.replace(/<[^>]*>/g, '');
+        document.execCommand("insertHTML", false, cleanText + "<hr>");
+      }
+    },
+    underline: {
+      iconClass: "fa fa-underline",
+      mode: "edit",
+      action: function(event) {
+        document.execCommand("underline");
       }
     }
+
   });
 })(jQuery);
