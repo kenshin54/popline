@@ -1,9 +1,9 @@
 /*
   jquery.popline.social.js 1.0.0
 
-  Version: 1.0.0
-  Updated: Sep 10th, 2014
-
+  Version: 1.0.1
+  Updated: Jan 23th, 2023 
+  Mons (https://github.com/blyamur)
   (c) 2014 by kenshin54
 */
 ;(function($) {
@@ -36,11 +36,33 @@
         openWindow(url, true);
       }
     },
+    vkcom: {
+      iconClass: "fa fa-vk",
+      mode: "view",
+      action: function(event) {
+        var url = "https://www.vk.com/share.php";
+        params = [];
+        params.push("title=" + encodeURIComponent($.popline.utils.selection().text()));
+        params.push("url=" + encodeURIComponent(location.href));
+        openWindow(url + "?" + params.join("&"), true);
+      }
+    },
+    okru: {
+      iconClass: "fa fa-odnoklassniki",
+      mode: "view",
+      action: function(event) {
+        var url = "https://connect.ok.ru/offer";
+        params = [];
+        params.push("title=" + encodeURIComponent($.popline.utils.selection().text()));
+        params.push("url=" + encodeURIComponent(location.href));
+        openWindow(url + "?" + params.join("&"), true);
+      }
+    },
     facebook: {
       iconClass: "fa fa-facebook",
       mode: "view",
       action: function(event) {
-        var url = "http://www.facebook.com/sharer.php";
+        var url = "https://www.facebook.com/sharer.php";
         params = [];
         params.push("s=100");
         params.push("p[summary]=" + encodeURIComponent($.popline.utils.selection().text()));
@@ -48,11 +70,23 @@
         openWindow(url + "?" + params.join("&"), true);
       }
     },
+    trileru: {
+      iconClass: "fa fa-compress",
+      mode: "view",
+      action: function(event) {
+        var url = "https://3le.ru/api/";
+        params = [];
+		params.push("social=" + encodeURIComponent('3LE'));
+        params.push("apik=" + encodeURIComponent('3LE'));
+        params.push("url=" + encodeURIComponent(location.href));
+        openWindow(url + "?" + params.join("&"), true);
+      }
+    },
     pinterest: {
       iconClass: "fa fa-pinterest",
       mode: "view",
       action: function(event) {
-        var url = "http://pinterest.com/pin/create/button/";
+        var url = "https://pinterest.com/pin/create/button/";
         var range = $.popline.utils.selection().range();
         var fragment = null;
         if ($.popline.utils.browser.ieLtIE9()) {
